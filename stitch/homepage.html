@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="nl"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Space+Grotesk:wght@500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        body {
+            background-color: #131313;
+            color: #e4e2e1;
+            overflow-x: hidden;
+        }
+        .glass-card {
+            background: rgba(14, 14, 14, 0.6);
+            backdrop-filter: blur(20px);
+            border: 1px solid transparent;
+            border-image: linear-gradient(135deg, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0.03) 100%) 1;
+        }
+        .text-glow {
+            text-shadow: 0 0 15px rgba(173, 199, 255, 0.3);
+        }
+        .nav-blur {
+            backdrop-filter: blur(12px);
+        }
+    
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-fade-in-up {
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+
+        .delay-100 { animation-delay: 100ms; }
+        .delay-200 { animation-delay: 200ms; }
+        .delay-300 { animation-delay: 300ms; }
+
+        .service-card-hover {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .service-card-hover:hover {
+            transform: translateY(-8px) scale(1.01);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), 0 0 20px rgba(173, 199, 255, 0.1);
+            border-color: rgba(173, 199, 255, 0.3) !important;
+        }
+
+        .btn-hover-effect {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .btn-hover-effect:hover {
+            transform: scale(1.05);
+        }
+
+        .section-reveal {
+            opacity: 0;
+            animation: fadeInUp 1s ease-out forwards;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container": "#1f2020",
+                        "surface": "#131313",
+                        "surface-variant": "#353535",
+                        "on-error": "#690005",
+                        "on-tertiary-fixed-variant": "#41474e",
+                        "on-error-container": "#ffdad6",
+                        "on-primary-container": "#00285b",
+                        "tertiary-container": "#8b9199",
+                        "background": "#131313",
+                        "primary": "#adc7ff",
+                        "on-secondary-fixed-variant": "#474646",
+                        "on-tertiary-fixed": "#161c22",
+                        "secondary-fixed-dim": "#c9c6c5",
+                        "primary-fixed": "#d8e2ff",
+                        "inverse-on-surface": "#303030",
+                        "on-primary-fixed": "#001a41",
+                        "on-background": "#e4e2e1",
+                        "surface-container-highest": "#353535",
+                        "surface-dim": "#131313",
+                        "on-primary": "#002e68",
+                        "surface-container-lowest": "#0e0e0e",
+                        "error-container": "#93000a",
+                        "on-secondary-fixed": "#1c1b1b",
+                        "secondary-container": "#4a4949",
+                        "outline": "#8b90a0",
+                        "surface-container-high": "#2a2a2a",
+                        "surface-tint": "#adc7ff",
+                        "tertiary-fixed-dim": "#c1c7cf",
+                        "on-surface": "#e4e2e1",
+                        "inverse-primary": "#005bc0",
+                        "error": "#ffb4ab",
+                        "on-tertiary": "#2b3137",
+                        "on-secondary": "#313030",
+                        "surface-container-low": "#1b1c1c",
+                        "tertiary": "#c1c7cf",
+                        "secondary-fixed": "#e5e2e1",
+                        "surface-bright": "#393939",
+                        "primary-container": "#4a8eff",
+                        "on-tertiary-container": "#242a30",
+                        "outline-variant": "#414754",
+                        "on-surface-variant": "#c1c6d7",
+                        "on-secondary-container": "#bab8b7",
+                        "primary-fixed-dim": "#adc7ff",
+                        "tertiary-fixed": "#dde3eb",
+                        "secondary": "#c9c6c5",
+                        "inverse-surface": "#e4e2e1",
+                        "on-primary-fixed-variant": "#004493"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "section-gap": "128px",
+                        "gutter": "32px",
+                        "unit": "8px",
+                        "margin-edge": "64px",
+                        "container-max": "1440px"
+                    },
+                    "fontFamily": {
+                        "body-md": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "headline-xl": ["Space Grotesk"],
+                        "display-lg": ["Space Grotesk"],
+                        "label-sm": ["Space Grotesk"],
+                        "headline-md": ["Space Grotesk"]
+                    },
+                    "fontSize": {
+                        "body-md": ["16px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                        "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                        "headline-xl": ["48px", {"lineHeight": "1.2", "letterSpacing": "0.02em", "fontWeight": "700"}],
+                        "display-lg": ["72px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "label-sm": ["12px", {"lineHeight": "1", "letterSpacing": "0.1em", "fontWeight": "600"}],
+                        "headline-md": ["32px", {"lineHeight": "1.3", "fontWeight": "600"}]
+                    }
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-surface font-body-md text-on-surface selection:bg-primary selection:text-on-primary">
+<!-- TopAppBar Navigation -->
+<nav class="fixed top-0 w-full z-50 bg-zinc-950/60 backdrop-blur-lg border-b border-white/10 shadow-[0_4px_30px_rgba(0,0,0,0.1)] animate-fade-in-up">
+<div class="flex justify-between items-center h-20 px-8 md:px-16 w-full">
+<div class="text-xl font-bold tracking-tighter text-zinc-100 font-headline-xl">ZAAGMAN AUTOPOETSEN</div>
+<div class="hidden md:flex gap-8 items-center">
+<a class="font-['Space_Grotesk'] uppercase tracking-widest text-sm font-medium text-blue-500 font-bold border-b-2 border-blue-500 pb-1" href="#">Home</a>
+<a class="font-['Space_Grotesk'] uppercase tracking-widest text-sm font-medium text-zinc-400 hover:text-zinc-100 transition-all duration-300" href="#">Diensten</a>
+<a class="font-['Space_Grotesk'] uppercase tracking-widest text-sm font-medium text-zinc-400 hover:text-zinc-100 transition-all duration-300" href="#">Portfolio</a>
+<a class="font-['Space_Grotesk'] uppercase tracking-widest text-sm font-medium text-zinc-400 hover:text-zinc-100 transition-all duration-300" href="#">Onze Werkwijze</a>
+<a class="font-['Space_Grotesk'] uppercase tracking-widest text-sm font-medium text-zinc-400 hover:text-zinc-100 transition-all duration-300" href="#">Tarieven</a>
+</div>
+<button class="bg-primary text-on-primary px-6 py-2.5 font-label-sm uppercase tracking-widest hover:bg-blue-600/10 hover:shadow-[0_0_15px_rgba(0,123,255,0.3)] transition-all duration-300 active:scale-95 btn-hover-effect">AFSPRAAK MAKEN</button>
+</div>
+</nav>
+<!-- Hero Section -->
+<header class="relative h-screen flex items-center justify-center overflow-hidden">
+<div class="absolute inset-0 z-0">
+<img class="w-full h-full object-cover opacity-60 scale-105" data-alt="A side-profile shot of a high-end luxury sports car in a pitch-black studio environment. Sharp overhead studio lights trace the aerodynamic curves and metallic gloss of the car, creating high-contrast highlights. The atmosphere is sophisticated and cinematic, dominated by deep obsidian tones with subtle blue reflections from technical lighting. The visual style is hyper-realistic and premium, emphasizing molecular precision and engineering mastery." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCoJi1sPz_4Rfb6_JuujS5JsMF5RYrc2L2Q_D1x4uOqTHJq_WtMquKGXLG-z8qnX8bvBAruMxMadS0bg2uAhyfnr0Q1kV7JEujTKaQstDhSy8lOHMlUextJKUNQ97SUo_8U680xE4GKNrg3G-64qYCEuwRYrJOWw7cNzFUohcXUcGP15bHq5I5qUTFck51wcW3C3SodCduyj6llG3GwhJyPEPD2x2EF3ED12chJqBCuE_nfqlnDiAQGTChJJWYhk6rUFOkZgRKcjZDf"/>
+<div class="absolute inset-0 bg-gradient-to-b from-transparent via-surface/40 to-surface"></div>
+</div>
+<div class="relative z-10 text-center px-4 max-w-5xl animate-fade-in-up">
+<span class="font-label-sm text-primary uppercase tracking-[0.4em] mb-6 block">Technisch Meesterschap</span>
+<h1 class="font-display-lg text-white mb-8 leading-none animate-fade-in-up">PERFECTIE HERDEFINIEERD</h1>
+<p class="font-body-lg text-on-surface-variant max-w-2xl mx-auto mb-12">
+                Met 30 jaar expertise tillen wij voertuigonderhoud naar een moleculair niveau. In onze klinische studio in Leek transformeren wij elke auto tot een technisch kunstwerk.
+            </p>
+<div class="flex gap-6 justify-center">
+<button class="bg-primary text-on-primary px-8 py-4 font-label-sm tracking-widest hover:shadow-[0_0_20px_rgba(173,199,255,0.5)] transition-all active:scale-95 btn-hover-effect">ONTDEK DE DIENSTEN</button>
+<button class="border border-white/20 bg-white/5 backdrop-blur-md text-white px-8 py-4 font-label-sm tracking-widest hover:bg-white/10 transition-all btn-hover-effect">ONZE WERKWIJZE</button>
+</div>
+</div>
+</header>
+<!-- De Zaagman Standaard -->
+<section class="py-section-gap px-margin-edge max-w-container-max mx-auto section-reveal">
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-24 items-center">
+<div class="relative">
+<div class="absolute -top-12 -left-12 w-64 h-64 bg-primary/10 rounded-full blur-[80px]"></div>
+<img class="w-full h-auto rounded-lg shadow-2xl glass-card p-1 transition-all duration-500" data-alt="A detailed close-up shot of a detailing professional's hand using a high-precision polishing tool on a dark metallic car surface. The focus is incredibly sharp, showing the contrast between corrected paint and imperfections. Soft blue workshop lights illuminate the scene, reflecting off the mirror-like finish. The setting is a clean, technical automotive detailing studio with a professional, clinical aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCcOCahWIFQOzHsJYXXlxSpd1pX0nN-QUXxMEvLYNDPlw6zSjsCiVT6U7scGtpJ-c1Bt0L2A8QITbZo68lGYj5KlMdh2urPtgf0JTwXVj4E6UKb7j-eOZkE9no-nKUCNl-yhKmKK8IUKskXJXf76iWicWSBowtLzZT0kYtgfolANxAN2c1eH4jJhend5-lhM9HB_5jF9H4ju0ZG-1Cr8-sG8fnWtrokNK0ar8ZCLIJG7LvnLqlqB2q08hLUHzFnlGmclVsUzkOLuFzv"/>
+<div class="absolute -bottom-8 -right-8 glass-card p-8 text-center transition-all duration-500">
+<div class="font-display-lg text-primary text-5xl">30+</div>
+<div class="font-label-sm uppercase tracking-tighter mt-2">Jaren Ervaring</div>
+</div>
+</div>
+<div>
+<h2 class="font-headline-xl text-white mb-8 animate-fade-in-up">DE ZAAGMAN STANDAARD</h2>
+<div class="space-y-12">
+<div class="flex gap-6">
+<div class="w-12 h-12 rounded bg-surface-container flex items-center justify-center shrink-0 border border-white/5">
+<span class="material-symbols-outlined text-primary">precision_manufacturing</span>
+</div>
+<div>
+<h3 class="font-headline-md text-white text-xl mb-2">Technisch Meesterschap</h3>
+<p class="font-body-md text-on-surface-variant">Wij maken geen concessies. Elke behandeling begint bij een diepgaande analyse van de lakconditie voor een resultaat dat de fabrieksspecificaties overtreft.</p>
+</div>
+</div>
+<div class="flex gap-6">
+<div class="w-12 h-12 rounded bg-surface-container flex items-center justify-center shrink-0 border border-white/5">
+<span class="material-symbols-outlined text-primary">eco</span>
+</div>
+<div>
+<h3 class="font-headline-md text-white text-xl mb-2">Duurzame Coatings</h3>
+<p class="font-body-md text-on-surface-variant">Onze FLON 4000 en keramische verzegelingen bieden een ondoordringbaar schild tegen de elementen, met behoud van diepe glans voor jaren.</p>
+</div>
+</div>
+<div class="flex gap-6">
+<div class="w-12 h-12 rounded bg-surface-container flex items-center justify-center shrink-0 border border-white/5">
+<span class="material-symbols-outlined text-primary">sanitizer</span>
+</div>
+<div>
+<h3 class="font-headline-md text-white text-xl mb-2">Klinische Interieurreiniging</h3>
+<p class="font-body-md text-on-surface-variant">Dieptereiniging tot in de kleinste poriën. Wij verwijderen niet alleen vuil, maar herstellen de originele textuur en geur van elk materiaal.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Diensten op Maat Bento Grid -->
+<section class="bg-surface-container-low py-section-gap px-margin-edge overflow-hidden section-reveal">
+<div class="max-w-container-max mx-auto">
+<div class="flex justify-between items-end mb-16">
+<div class="max-w-xl">
+<h2 class="font-headline-xl text-white mb-4 animate-fade-in-up">DIENSTEN OP MAAT</h2>
+<p class="font-body-lg text-on-surface-variant">Gespecialiseerde zorg voor elk type voertuig, van exclusieve supercars tot waardevolle recreatiewagens.</p>
+</div>
+<div class="hidden md:block">
+<span class="font-label-sm text-zinc-500 uppercase">Scroll voor details</span>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-12 gap-8 h-auto md:h-[800px]">
+<div class="md:col-span-8 group relative overflow-hidden rounded-lg service-card-hover">
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" data-alt="A wide-angle professional shot of a black sedan receiving paint correction in a technical detailing bay. The car is surrounded by specialized high-CRI LED lights that reveal every microscopic swirl mark and detail. The environment is impeccably clean, representing clinical technical mastery. Deep blue accents from tool carts and equipment contrast with the obsidian black of the car." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDI4SBxSlNrzanLYEEH5A72Y_lVgKWy5L1KEzbsnUpm8V7vCmkk5gKCwhQlCu7bllCOKDkFK-1vD4Q0O0hDQoBaPCUGhM2-sGO6fA8gNp1h_-eFk9r0qCjPoQS16Ktbh1-j6efOYgg6Mg3LoCuWFJsuK-f39j6xmTR6ygUx3IFUIiTBeODM1v8takkKB_Jec6VVylnTysXrJCkAaDylriq_vsPcwCaQSchK9TwjFTbUBGUxDV64SWkbh94xPH4rsN4t7vAd1ocos5ug"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
+<div class="absolute bottom-10 left-10">
+<h3 class="font-headline-md text-white mb-2">Lakverzegeling</h3>
+<p class="text-on-surface-variant font-body-md mb-6 max-w-sm">Langdurige bescherming met keramische coatings voor een ongeëvenaarde hydrofobische afwerking.</p>
+<button class="bg-primary text-on-primary px-6 py-2 font-label-sm btn-hover-effect">LEES MEER</button>
+</div>
+</div>
+<div class="md:col-span-4 group relative overflow-hidden rounded-lg service-card-hover">
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" data-alt="Interior shot of a luxury car's leather seats being steam cleaned. The image captures the fine mist of steam and the restored matte texture of the premium leather. The lighting is soft and focused, highlighting the clinical cleanliness and technical precision of the process. The color palette is dark, emphasizing high-end luxury and obsessive care." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBz3o1AQjHqYHEyNO32R3ysMvyJ1AGFhW3FjxVIxQYz0rBgojPqgOSjctcOIFQcflXFKnYLj6FYm65Gc8Axg-u1qUdwMPAy-iuaJGTDLrc7oy7PKNjceaZPiE3hstvtutiNuUxoDG_dqOAPyXYt0bI-RFAP5I6W6NtoFcwnOrsu2nhd_1c9Wi5h0jI9vORcgrzTGqxRRn2qwsAmfs0cCUflq0L1Dsy_K7W1VSeHj_ro4WusHEj9QqN-ebH02_gbAPcdpOVo7fREd9dv"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
+<div class="absolute bottom-10 left-10">
+<h3 class="font-headline-md text-white mb-2 text-2xl">Dieptereiniging</h3>
+<button class="text-primary font-label-sm flex items-center gap-2 btn-hover-effect">BEKIJK DETAILS <span class="material-symbols-outlined text-sm">arrow_forward</span></button>
+</div>
+</div>
+<div class="md:col-span-4 group relative overflow-hidden rounded-lg h-[300px] md:h-auto service-card-hover">
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" data-alt="A macro photograph showing a precision airbrush repair on a small scratch on a high-gloss car panel. The artist's hand is visible holding the technical tool, demonstrating extreme control and molecular precision. The background is blurred, keeping all focus on the repair point and the high-contrast studio lighting reflecting off the metallic paint." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCpN_pXLkv9O_Da6vqL-1u6lcHpSz3XqB0uyLhoOplr2MKL0NwWVHZnEiJWM-ufR2G76HSjHskHAmjmSyEuzfCq-OF46RjRj-JNxARt1vGswSuJhIAVj5GbGTnJ1ksHP1U3vbwD7na17rlPyBXAEg1qZPDCDVecI7E6HVOtwomBpkZI0rd48a4fTS9YvmWOoB2duyou_BvTU7xk_sF4y76mUsh8Xqg7-vfaZu-pjA6DQW6GCx7ZNOOPN6-9-63Esq_6iGyGPfEXuAQf"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
+<div class="absolute bottom-10 left-10">
+<h3 class="font-headline-md text-white mb-2 text-2xl">Spotrepair</h3>
+<button class="text-primary font-label-sm flex items-center gap-2 btn-hover-effect">BEKIJK DETAILS <span class="material-symbols-outlined text-sm">arrow_forward</span></button>
+</div>
+</div>
+<div class="md:col-span-8 group relative overflow-hidden rounded-lg h-[300px] md:h-auto service-card-hover">
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" data-alt="A clean, minimalist shot of a modern, high-end motorhome parked inside a spacious detailing hall. The white exterior of the caravan shines under professional studio lighting, emphasizing the scale and thoroughness of the cleaning service. The floor is a polished dark grey, and the overall atmosphere is one of professional mastery and high-capacity luxury care." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCYDPFl569blmHb1OL5YZfMZTqNE65lzqzhfAMm_D4uLSFY3aS-FYr37BU4NSk-OohSBbix9v-q5nk-NePjdRIqMqMMmYVJi_BvSkuJ6_vslBLAa2hE7ZAe4h9KNu0B_dCK5-16ILn9wDvwC1SRtcySjOKtiqILTC4c2Y6axxK3owm5vQEwhx1k0BF_OeyXXCPtuPXXfC0l3_v5UMe7CVj6EbKW2NFTPuvGlpGrSLd3nxWVP9qS6xAFyUwmLeoHkOIX-Zmv_y9VV6Xl"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
+<div class="absolute bottom-10 left-10">
+<h3 class="font-headline-md text-white mb-2">Caravan &amp; Camper</h3>
+<p class="text-on-surface-variant font-body-md mb-6 max-w-sm">Specialistische reiniging en bescherming voor uw mobiele vakantieverblijf.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- 30 Jaar Passie voor Perfectie -->
+<section class="py-section-gap px-margin-edge section-reveal">
+<div class="max-w-7xl mx-auto glass-card p-16 relative overflow-hidden transition-all duration-500">
+<div class="absolute top-0 right-0 w-1/2 h-full opacity-10 pointer-events-none">
+<span class="material-symbols-outlined text-[400px] absolute -top-20 -right-20">history</span>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+<div>
+<h2 class="font-headline-xl text-white mb-8 animate-fade-in-up">30 JAAR PASSIE VOOR PERFECTIE</h2>
+<p class="font-body-lg text-on-surface-variant mb-12">
+                        Begonnen als een ambitieus familiebedrijf in Leek, is Zaagman Autopoetsen uitgegroeid tot een begrip in de regio voor exclusieve voertuigverzorging. Onze toewijding aan kwaliteit wordt bevestigd door onze certificeringen.
+                    </p>
+<div class="flex flex-wrap gap-12 items-center grayscale opacity-80 hover:grayscale-0 hover:opacity-100 transition-all">
+<div class="text-center">
+<div class="h-20 w-32 flex items-center justify-center border border-white/10 bg-white/5 p-4 rounded">
+<span class="font-headline-md text-2xl font-black text-white tracking-tighter">FOCWA</span>
+</div>
+<span class="font-label-sm mt-2 block text-zinc-500">GECERTIFICEERD</span>
+</div>
+<div class="text-center">
+<div class="h-20 w-32 flex items-center justify-center border border-white/10 bg-white/5 p-4 rounded">
+<span class="font-headline-md text-2xl font-black text-white tracking-tighter">FLON 4000</span>
+</div>
+<span class="font-label-sm mt-2 block text-zinc-500">MASTER PARTNER</span>
+</div>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-4">
+<div class="space-y-4">
+<div class="h-64 rounded bg-surface-container overflow-hidden">
+<div class="w-full h-2 bg-primary"></div>
+<div class="p-8">
+<span class="font-display-lg text-4xl block mb-2">99%</span>
+<p class="font-label-sm uppercase tracking-widest">Klanttevredenheid</p>
+</div>
+</div>
+<div class="h-48 rounded bg-surface-container-high overflow-hidden p-8 border border-white/5">
+<span class="material-symbols-outlined text-primary text-4xl mb-4">verified_user</span>
+<p class="font-body-md">Volledig verzekerd transport en opslag.</p>
+</div>
+</div>
+<div class="space-y-4 pt-12">
+<div class="h-48 rounded bg-surface-container-high overflow-hidden p-8 border border-white/5">
+<span class="material-symbols-outlined text-primary text-4xl mb-4">award_star</span>
+<p class="font-body-md">Erkend FLON applicateur sinds 1994.</p>
+</div>
+<div class="h-64 rounded bg-primary overflow-hidden p-8 text-on-primary">
+<span class="font-display-lg text-4xl block mb-2">12k+</span>
+<p class="font-label-sm uppercase tracking-widest">Voertuigen Behandeld</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Klantervaringen -->
+<section class="py-section-gap px-margin-edge bg-surface section-reveal">
+<div class="text-center mb-20">
+<h2 class="font-headline-xl text-white animate-fade-in-up">KLANTERVARINGEN</h2>
+<p class="font-body-lg text-on-surface-variant">Wat onze cliënten zeggen over de Zaagman transformatie.</p>
+</div>
+<div class="max-w-4xl mx-auto relative">
+<div class="absolute -top-20 -left-20 text-primary/10 select-none">
+<span class="material-symbols-outlined text-[200px]" style="font-variation-settings: 'FILL' 1;">format_quote</span>
+</div>
+<div class="glass-card p-16 relative z-10 transition-all duration-500">
+<blockquote class="font-display-lg text-3xl text-white italic mb-12 leading-relaxed">
+                    "De aandacht voor detail bij Zaagman is ongekend. Mijn Porsche leek in een betere conditie dan toen ik hem ophaalde bij de dealer. De lakverzegeling is werkelijk een investering in de waarde van de auto."
+                </blockquote>
+<div class="flex items-center gap-6">
+<div class="w-16 h-16 rounded-full overflow-hidden border-2 border-primary p-0.5">
+<img class="w-full h-full object-cover rounded-full" data-alt="A professional headshot of a middle-aged man with a confident, satisfied expression. He is wearing a high-end tailored suit. The lighting is warm and cinematic, set against a dark, blurred executive background. The image evokes trust, luxury, and success, matching the premium brand aesthetic of a car detailing service." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCOvB3UQxnQZfMUprtNMBPhaSNCLDVk61w89t5cXKXCaum9YpdejqQlMeHYQ5Klyq_gFiLLXacVSNqXkLPJZAZVtyqgPAGm13VRA0cxP74Jqw96_REyw0KaRgwSqoxuUUP28aj5FSpeN7fSUncyglLxi0-mwsLW-RcO4nMzLKgIBl0XKV9bfrURHD_fRfm94gVF_zJtLqT5lOgFphN41UatPtZS1JQZ0QpLfyQdaISkzfZ_K9FIcAPEACnoZrnrGL0j5bXPifXQ9WaE"/>
+</div>
+<div>
+<div class="font-headline-md text-white text-lg">Julian Veenstra</div>
+<div class="font-label-sm text-primary uppercase tracking-widest">Exclusief Verzamelaar</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Beveilig uw Investering CTA -->
+<section class="py-section-gap px-margin-edge section-reveal">
+<div class="max-w-container-max mx-auto rounded-xl overflow-hidden relative">
+<div class="absolute inset-0 bg-primary/10">
+<img class="w-full h-full object-cover mix-blend-overlay opacity-30" data-alt="A dramatic shot of a modern hypercar's headlight and front grill, illuminated from above to reveal precise design lines. The image is mostly dark, with sharp highlights creating a futuristic, high-tech mood. The color palette centers on blacks, silvers, and technical blue glows, emphasizing the concept of securing a high-value automotive investment." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCHuq5O8Rgv_dlvWoou4TKwYVgoGvOaMPH6VSGURQdWhSgi5OmuQPcKQNkcQOO9c3aDqwYPRl-cfCNbjv6Xu9mMVVWfOilwigYBC7Zp91ACHAG-CF-RmQPj0v2GIHfhJpJjvrtT0JgQUCerZ8wDe4ccwoL-IksgSWVYhNNXuRBhs7Nqp638exVXno-xvO54yjUEReCX6TX-5dJDdC6UbRttgsswuCSez3wlaqOjWaLoudNtlelu0lFKD75jTbj-WUOlxQ9qlxDUprzd"/>
+</div>
+<div class="relative z-10 p-20 text-center flex flex-col items-center">
+<h2 class="font-display-lg text-white mb-6 animate-fade-in-up">BEVEILIG UW INVESTERING</h2>
+<p class="font-body-lg text-on-surface-variant max-w-2xl mb-12">
+                    Uw voertuig verdient niets minder dan de Zaagman Standaard. Neem contact op voor een vrijblijvende lak-analyse en ontdek de mogelijkheden voor uw voertuig.
+                </p>
+<div class="flex flex-col sm:flex-row gap-6">
+<button class="bg-primary text-on-primary px-12 py-5 font-label-sm tracking-[0.2em] hover:scale-105 transition-all btn-hover-effect">BOEK EEN CONSULTATIE</button>
+<button class="border border-white/20 text-white px-12 py-5 font-label-sm tracking-[0.2em] hover:bg-white/5 transition-all btn-hover-effect">BEL ONS DIRECT</button>
+</div>
+</div>
+</div>
+</section>
+<!-- Footer -->
+<footer class="bg-zinc-950 border-t border-white/5 py-16 mt-32">
+<div class="max-w-7xl mx-auto px-8 grid grid-cols-1 md:grid-cols-3 gap-12">
+<div>
+<div class="text-lg font-black text-zinc-100 font-headline-xl mb-6">ZAAGMAN AUTOPOETSEN</div>
+<p class="font-['Space_Grotesk'] text-xs tracking-tight text-zinc-500 mb-8 max-w-xs">
+                    Technische perfectie en moleculaire lakbescherming sinds 1994. Uw partner in exclusief voertuigonderhoud in Noord-Nederland.
+                </p>
+<div class="flex gap-4">
+<a class="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center hover:text-blue-400 transition-colors" href="#">
+<span class="material-symbols-outlined text-lg">public</span>
+</a>
+<a class="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center hover:text-blue-400 transition-colors" href="#">
+<span class="material-symbols-outlined text-lg">photo_camera</span>
+</a>
+</div>
+</div>
+<div>
+<h4 class="font-label-sm text-white mb-8 uppercase tracking-widest">NAVIGATIE</h4>
+<ul class="space-y-4">
+<li><a class="font-['Space_Grotesk'] text-xs tracking-tight text-zinc-500 hover:text-zinc-300 transition-colors" href="#">Diensten</a></li>
+<li><a class="font-['Space_Grotesk'] text-xs tracking-tight text-zinc-500 hover:text-zinc-300 transition-colors" href="#">Onze Werkwijze</a></li>
+<li><a class="font-['Space_Grotesk'] text-xs tracking-tight text-zinc-500 hover:text-zinc-300 transition-colors" href="#">Portfolio</a></li>
+<li><a class="font-['Space_Grotesk'] text-xs tracking-tight text-zinc-500 hover:text-zinc-300 transition-colors" href="#">Contact</a></li>
+</ul>
+</div>
+<div>
+<h4 class="font-label-sm text-white mb-8 uppercase tracking-widest">CERTIFICERINGEN</h4>
+<div class="flex gap-6 items-center mb-8">
+<span class="font-bold text-zinc-600 text-sm tracking-tighter">FOCWA Certified</span>
+<span class="font-bold text-zinc-600 text-sm tracking-tighter">FLON 4000</span>
+</div>
+<p class="font-['Space_Grotesk'] text-xs tracking-tight text-zinc-500">
+                    Industrieweg 14, 9351 PA Leek<br/>
+                    Nederland
+                </p>
+</div>
+</div>
+<div class="max-w-7xl mx-auto px-8 mt-16 pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4">
+<p class="font-['Space_Grotesk'] text-xs tracking-tight text-zinc-500">© 2024 Zaagman Autopoetsen. Technical Mastery in Leek.</p>
+<div class="flex gap-8">
+<a class="font-['Space_Grotesk'] text-xs tracking-tight text-zinc-500 hover:text-blue-400" href="#">Privacy Policy</a>
+<a class="font-['Space_Grotesk'] text-xs tracking-tight text-zinc-500 hover:text-blue-400" href="#">Terms of Service</a>
+</div>
+</div>
+</footer>
+</body></html>

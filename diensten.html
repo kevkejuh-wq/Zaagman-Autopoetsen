@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html class="dark" lang="nl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Diensten | Zaagman Autopoetsen</title>
+  <meta name="description" content="Keramische coatings, dieptereiniging, spotrepair en meer. Professionele autoverzorging door Zaagman Autopoetsen in Leek – FOCWA gecertificeerd.">
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            'surface': '#131313', 'surface-container': '#1f2020', 'surface-container-low': '#1b1c1c',
+            'surface-container-high': '#2a2a2a', 'surface-container-highest': '#353535',
+            'surface-container-lowest': '#0e0e0e', 'on-surface': '#e4e2e1',
+            'on-surface-variant': '#c1c6d7', 'primary': '#adc7ff', 'on-primary': '#002e68',
+            'primary-container': '#4a8eff', 'on-primary-container': '#00285b',
+            'secondary-container': '#4a4949', 'background': '#131313', 'on-background': '#e4e2e1',
+          },
+          spacing: { 'section-gap': '128px', 'gutter': '32px', 'margin-edge': '64px', 'container-max': '1440px' },
+          borderRadius: { 'DEFAULT': '0.125rem', 'lg': '0.25rem', 'xl': '0.5rem', 'full': '0.75rem' },
+        },
+      },
+    };
+  </script>
+  <style>
+    body { background-color: #131313; color: #e4e2e1; overflow-x: hidden; }
+    .glass-card {
+      background: rgba(14,14,14,0.6); backdrop-filter: blur(20px);
+      border: 1px solid transparent;
+      border-image: linear-gradient(135deg, rgba(255,255,255,0.12) 0%, rgba(255,255,255,0.03) 100%) 1;
+    }
+    .glass-card:hover { background: rgba(20,20,20,0.75); box-shadow: 0 0 25px rgba(173,199,255,0.08); transition: all 0.3s; }
+    .reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.7s ease, transform 0.7s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .reveal.d1 { transition-delay: 0.12s; } .reveal.d2 { transition-delay: 0.24s; }
+    .btn { transition: all 0.25s cubic-bezier(0.4,0,0.2,1); display: inline-block; }
+    .btn:hover { transform: scale(1.04); } .btn:active { transform: scale(0.97); }
+    .site-nav { transition: background 0.3s ease; }
+    .site-nav.scrolled { background: rgba(5,5,5,0.85) !important; }
+  </style>
+</head>
+<body class="font-['Inter']">
+
+<!-- NAVIGATION -->
+<nav class="site-nav fixed top-0 w-full z-50 bg-zinc-950/60 backdrop-blur-lg border-b border-white/10">
+  <div class="flex justify-between items-center h-20 px-6 md:px-16 w-full max-w-[1440px] mx-auto">
+    <a href="index.html" class="flex items-center gap-3">
+      <img src="images/zaagman_logo_transparant_schoon.png" alt="Zaagman Autopoetsen" class="h-14 md:h-16 w-auto">
+      <span class="font-['Space_Grotesk'] font-black text-base tracking-tighter text-zinc-100 hidden lg:block">ZAAGMAN AUTOPOETSEN</span>
+    </a>
+    <div class="hidden md:flex gap-8 items-center">
+      <a href="index.html" class="font-['Space_Grotesk'] uppercase tracking-widest text-sm font-medium text-zinc-400 hover:text-zinc-100 transition-colors">Home</a>
+      <a href="diensten.html" class="font-['Space_Grotesk'] uppercase tracking-widest text-sm font-bold text-blue-400 border-b-2 border-blue-400 pb-1">Diensten</a>
+      <a href="portfolio.html" class="font-['Space_Grotesk'] uppercase tracking-widest text-sm font-medium text-zinc-400 hover:text-zinc-100 transition-colors">Portfolio</a>
+      <a href="index.html#werkwijze" class="font-['Space_Grotesk'] uppercase tracking-widest text-sm font-medium text-zinc-400 hover:text-zinc-100 transition-colors">Onze Werkwijze</a>
+      <a href="#tarieven" class="font-['Space_Grotesk'] uppercase tracking-widest text-sm font-medium text-zinc-400 hover:text-zinc-100 transition-colors">Tarieven</a>
+    </div>
+    <div class="flex items-center gap-3">
+      <a href="reserveren.html" class="hidden md:inline-block bg-primary text-on-primary px-6 py-2.5 font-['Space_Grotesk'] text-xs uppercase tracking-widest btn">AFSPRAAK MAKEN</a>
+      <button id="mobile-menu-btn" class="md:hidden text-zinc-100 p-2" aria-label="Menu">
+        <span class="material-symbols-outlined text-2xl">menu</span>
+      </button>
+    </div>
+  </div>
+  <div id="mobile-menu" class="hidden md:hidden bg-zinc-950 border-t border-white/10">
+    <div class="flex flex-col px-8 py-8 gap-5">
+      <a href="index.html" class="font-['Space_Grotesk'] uppercase tracking-widest text-sm text-zinc-400">Home</a>
+      <a href="diensten.html" class="font-['Space_Grotesk'] uppercase tracking-widest text-sm font-bold text-blue-400">Diensten</a>
+      <a href="portfolio.html" class="font-['Space_Grotesk'] uppercase tracking-widest text-sm text-zinc-400">Portfolio</a>
+      <a href="index.html#werkwijze" class="font-['Space_Grotesk'] uppercase tracking-widest text-sm text-zinc-400">Onze Werkwijze</a>
+      <a href="#tarieven" class="font-['Space_Grotesk'] uppercase tracking-widest text-sm text-zinc-400">Tarieven</a>
+      <a href="reserveren.html" class="bg-primary text-on-primary py-3 font-['Space_Grotesk'] text-xs uppercase tracking-widest text-center mt-2">AFSPRAAK MAKEN</a>
+    </div>
+  </div>
+</nav>
+
+<main class="pt-28">
+
+  <!-- HERO BANNER -->
+  <section class="max-w-[1440px] mx-auto px-6 md:px-margin-edge mb-section-gap">
+    <div class="relative h-[520px] w-full overflow-hidden rounded-lg reveal">
+      <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuCi8I0KMp6hJT4GLUN5NlwKc1e2Zql-RoRsSoIVOZsm0ByWe4gHvELy8GoQT5KVgTrUIwCxdoC6x9a8j2x7TgkNFKTHL1GX55T4ydLWw9CpgOzkBRgGGARviU6y6hUGkrRKf20ObEGdEQZbkb-NcAhmuLzJlmFGmQ4iZZOjynlFt_G133nEW2aToDZA5az_z8B2_SpCJFtTwxPSMHDtoKgbvK3terFlArUJwLUHsPFPF3ab3SNEwk_ZUdrHgWPP7ayshdnyIz0LJ7Ss"
+           alt="Luxe voertuig in professionele studio" class="w-full h-full object-cover brightness-50">
+      <div class="absolute inset-0 flex flex-col justify-end p-10 md:p-16 bg-gradient-to-t from-surface to-transparent">
+        <span class="font-['Space_Grotesk'] text-primary text-xs uppercase tracking-widest mb-4 block">Excellentie in Detailing</span>
+        <h1 class="font-['Space_Grotesk'] font-black text-white uppercase" style="font-size:clamp(2rem,5vw,3.5rem);letter-spacing:-0.02em;">HOOGWAARDIGE<br>AUTOMOTIVE PRESERVATIE</h1>
+      </div>
+    </div>
+  </section>
+
+  <!-- METRICS -->
+  <section class="max-w-[1440px] mx-auto px-6 md:px-margin-edge mb-section-gap">
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+      <div class="glass-card p-8 rounded-lg flex flex-col items-center text-center reveal">
+        <span class="material-symbols-outlined text-primary text-4xl mb-4">verified_user</span>
+        <h3 class="font-['Space_Grotesk'] font-black text-3xl text-primary mb-1">100%</h3>
+        <p class="font-['Inter'] text-sm text-on-surface-variant">UV Protectie</p>
+      </div>
+      <div class="glass-card p-8 rounded-lg flex flex-col items-center text-center reveal d1">
+        <span class="material-symbols-outlined text-primary text-4xl mb-4">water_drop</span>
+        <h3 class="font-['Space_Grotesk'] font-black text-3xl text-primary mb-1">98%</h3>
+        <p class="font-['Inter'] text-sm text-on-surface-variant">Waterafstotend</p>
+      </div>
+      <div class="glass-card p-8 rounded-lg flex flex-col items-center text-center reveal d1">
+        <span class="material-symbols-outlined text-primary text-4xl mb-4">shield</span>
+        <h3 class="font-['Space_Grotesk'] font-black text-3xl text-primary mb-1">9H</h3>
+        <p class="font-['Inter'] text-sm text-on-surface-variant">Lak Hardheid</p>
+      </div>
+      <div class="glass-card p-8 rounded-lg flex flex-col items-center text-center reveal d2">
+        <div class="text-3xl font-['Space_Grotesk'] font-black text-zinc-100 mb-4">FOCWA</div>
+        <p class="font-['Inter'] text-sm text-on-surface-variant">Gecertificeerd Vakmanschap</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES GRID -->
+  <section class="max-w-[1440px] mx-auto px-6 md:px-margin-edge space-y-6 mb-section-gap">
+    <!-- Pakket D (featured) -->
+    <div class="glass-card rounded-lg p-8 md:p-12 hover:shadow-[0_0_25px_rgba(173,199,255,0.1)] transition-all duration-500 reveal">
+      <div class="flex flex-col lg:flex-row justify-between gap-10">
+        <div class="flex-1">
+          <div class="flex items-center gap-4 mb-6 flex-wrap">
+            <span class="font-['Space_Grotesk'] text-xs bg-primary/20 text-primary px-3 py-1 rounded">PREMIUM SELECTION</span>
+            <span class="font-['Space_Grotesk'] text-xs text-zinc-500">REF: PAKKET-D</span>
+          </div>
+          <h2 class="font-['Space_Grotesk'] font-black text-white mb-4" style="font-size:clamp(1.8rem,3vw,3rem);">Imperial Shield (Pakket D)</h2>
+          <p class="font-['Inter'] text-lg text-on-surface-variant mb-8 max-w-lg leading-relaxed">Onze meest complete poetsbehandeling: op basis van Clean Total en uitgebreid met een hoogwaardige Hardwax-finish voor extra glans en bescherming.</p>
+          <ul class="space-y-3 mb-10">
+            <li class="flex items-center gap-3 font-['Inter']"><span class="material-symbols-outlined text-primary text-lg">check_circle</span> Exterieur + interieur totaalbehandeling</li>
+            <li class="flex items-center gap-3 font-['Inter']"><span class="material-symbols-outlined text-primary text-lg">check_circle</span> Motorcompartiment gereinigd</li>
+            <li class="flex items-center gap-3 font-['Inter']"><span class="material-symbols-outlined text-primary text-lg">check_circle</span> Hardwax beschermlaag</li>
+            <li class="flex items-center gap-3 font-['Inter']"><span class="material-symbols-outlined text-primary text-lg">check_circle</span> Showroom resultaat</li>
+          </ul>
+          <div>
+            <span class="font-['Space_Grotesk'] text-xs text-zinc-500 block mb-1 uppercase tracking-widest">Investering</span>
+            <div class="flex items-center gap-6">
+              <span class="font-['Space_Grotesk'] font-black text-3xl text-white">Prijs op aanvraag</span>
+              <a href="reserveren.html" class="bg-primary text-on-primary px-8 py-3 font-['Space_Grotesk'] text-xs uppercase tracking-widest btn">Boek Nu</a>
+            </div>
+          </div>
+        </div>
+        <div class="lg:w-1/3 h-64 lg:h-auto rounded-lg overflow-hidden border border-white/10">
+          <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuCr3fC_pZKPFRh5Y5xatyMSn0TBRNsXDaXnSspsoMgLFSxVDSAYpmq1qCGtpWVK__2mfCtLIARmXrt3hRkqd_4H8zCv6GgVyCT2PlWeF6bKV8pM1TYdeUIOsajZ3Y4aG6SqhS11sLjGMC0eQu_i5VM6-trPehpO-Zlad1nOPb7C1NI606T8ryuRNks3htSiHhZkyztCQhuXJAAzW2kIBoGsv4ImSgrWuuX0ocDk8eT65wwC62ENYGRpyCIXtnTrWk-l68SFCHtkaL"
+               alt="Keramische coating applicatie" class="w-full h-full object-cover">
+        </div>
+      </div>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+      <!-- Dieptereiniging -->
+      <div class="lg:col-span-4 glass-card rounded-lg p-10 hover:shadow-[0_0_25px_rgba(173,199,255,0.08)] transition-all duration-500 flex flex-col justify-between reveal">
+        <div>
+          <span class="material-symbols-outlined text-primary text-4xl mb-6 block">sanitizer</span>
+          <h2 class="font-['Space_Grotesk'] font-black text-white text-2xl mb-4">Signature Gloss (Pakket A)</h2>
+          <p class="font-['Inter'] text-on-surface-variant mb-6 leading-relaxed">Rondom-reiniging van het exterieur, van lakdiagnose tot poetsen, velgenreiniging en hoogglanspolijsten.</p>
+          <ul class="space-y-3 mb-8">
+            <li class="flex items-center gap-2 font-['Inter'] text-sm"><span class="w-1.5 h-1.5 bg-primary rounded-full shrink-0"></span> Lakdiagnose</li>
+            <li class="flex items-center gap-2 font-['Inter'] text-sm"><span class="w-1.5 h-1.5 bg-primary rounded-full shrink-0"></span> Velgenreiniging</li>
+            <li class="flex items-center gap-2 font-['Inter'] text-sm"><span class="w-1.5 h-1.5 bg-primary rounded-full shrink-0"></span> Hoogglanspolijsten</li>
+          </ul>
+        </div>
+        <div class="border-t border-white/10 pt-6 flex items-end justify-between">
+          <div>
+            <span class="font-['Space_Grotesk'] text-xs text-zinc-500 block mb-1 uppercase tracking-widest">Prijs</span>
+            <span class="font-['Space_Grotesk'] font-black text-2xl text-white">Op aanvraag</span>
+          </div>
+          <a href="reserveren.html" class="text-primary font-['Space_Grotesk'] text-xs uppercase tracking-widest flex items-center gap-1 hover:underline">Boek <span class="material-symbols-outlined text-sm">arrow_forward</span></a>
+        </div>
+      </div>
+      <!-- Showroom Detail -->
+      <div class="lg:col-span-4 glass-card rounded-lg p-10 hover:shadow-[0_0_25px_rgba(173,199,255,0.08)] transition-all duration-500 flex flex-col justify-between reveal d1">
+        <div>
+          <span class="material-symbols-outlined text-primary text-4xl mb-6 block">auto_awesome</span>
+          <h2 class="font-['Space_Grotesk'] font-black text-white text-2xl mb-4">Interior Couture (Pakket B)</h2>
+          <p class="font-['Inter'] text-on-surface-variant mb-6 leading-relaxed">Shampoobehandeling van het interieur inclusief stoel-, vloer- en hemelbekleding plus totaalreiniging van dashboard tot kofferruimte.</p>
+          <div class="space-y-2 mb-8">
+            <div class="flex justify-between text-xs font-['Space_Grotesk']">
+              <span class="text-zinc-500 uppercase tracking-widest">Intensiteit</span>
+              <span class="text-primary">INTERIEUR DEEP CLEAN</span>
+            </div>
+            <div class="h-1 bg-surface-container rounded-full overflow-hidden">
+              <div class="h-full bg-primary w-4/5 shadow-[0_0_8px_rgba(173,199,255,0.6)]"></div>
+            </div>
+          </div>
+        </div>
+        <div class="border-t border-white/10 pt-6 flex items-end justify-between">
+          <div>
+            <span class="font-['Space_Grotesk'] text-xs text-zinc-500 block mb-1 uppercase tracking-widest">Prijs</span>
+            <span class="font-['Space_Grotesk'] font-black text-2xl text-white">Op aanvraag</span>
+          </div>
+          <a href="reserveren.html" class="text-primary font-['Space_Grotesk'] text-xs uppercase tracking-widest flex items-center gap-1 hover:underline">Boek <span class="material-symbols-outlined text-sm">arrow_forward</span></a>
+        </div>
+      </div>
+      <!-- Spotrepair -->
+      <div class="lg:col-span-4 glass-card rounded-lg p-10 hover:shadow-[0_0_25px_rgba(173,199,255,0.08)] transition-all duration-500 flex flex-col justify-between reveal d2">
+        <div>
+          <span class="material-symbols-outlined text-primary text-4xl mb-6 block">brush</span>
+          <h2 class="font-['Space_Grotesk'] font-black text-white text-2xl mb-4">Prestige Complete (Pakket C)</h2>
+          <p class="font-['Inter'] text-on-surface-variant mb-6 leading-relaxed">Combinatie van pakket A en B met extra uitgebreide reiniging van het motorcompartiment.</p>
+          <div class="flex items-center gap-2 mb-8">
+            <span class="text-primary font-bold">●</span>
+            <span class="font-['Inter'] text-sm italic text-zinc-400">Exterieur + interieur + motorruimte</span>
+          </div>
+        </div>
+        <div class="border-t border-white/10 pt-6 flex items-end justify-between">
+          <div>
+            <span class="font-['Space_Grotesk'] text-xs text-zinc-500 block mb-1 uppercase tracking-widest">Prijs</span>
+            <span class="font-['Space_Grotesk'] font-black text-2xl text-white">Op aanvraag</span>
+          </div>
+          <a href="reserveren.html" class="text-primary font-['Space_Grotesk'] text-xs uppercase tracking-widest flex items-center gap-1 hover:underline">Boek <span class="material-symbols-outlined text-sm">arrow_forward</span></a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Coating specialismen -->
+    <div class="glass-card rounded-lg p-10 hover:shadow-[0_0_25px_rgba(173,199,255,0.08)] transition-all duration-500 reveal">
+      <div class="flex flex-col md:flex-row gap-10 items-center">
+        <div class="flex-1">
+          <span class="material-symbols-outlined text-primary text-4xl mb-6 block">diamond</span>
+          <h2 class="font-['Space_Grotesk'] font-black text-white text-2xl mb-4">Coating Specialismen</h2>
+          <p class="font-['Inter'] text-on-surface-variant mb-6 max-w-lg leading-relaxed">Naast onze poetspakketten bieden we specialistische coatings voor maximale bescherming en waardebehoud.</p>
+          <ul class="grid grid-cols-1 sm:grid-cols-2 gap-y-2 gap-x-8 mb-6 text-sm text-zinc-300">
+            <li>Ceramic Coating</li>
+            <li>Quartz Coating</li>
+            <li>PTFE Coating</li>
+            <li>Veilig Zicht Coating</li>
+            <li>Textiel Coating</li>
+            <li>Wheel Coating</li>
+          </ul>
+          <div class="flex items-center gap-6 flex-wrap">
+            <span class="font-['Space_Grotesk'] font-black text-xl text-white">Alle coatings: prijs op aanvraag</span>
+            <a href="reserveren.html" class="bg-primary/20 text-primary px-6 py-2.5 font-['Space_Grotesk'] text-xs uppercase tracking-widest hover:bg-primary hover:text-on-primary transition-all btn">Offerte Aanvragen</a>
+          </div>
+        </div>
+        <div class="md:w-1/3 h-48 rounded-lg overflow-hidden border border-white/10">
+          <img src="images/portfolio/caravan-01.jpg"
+               alt="Caravan in professionele hal" class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-500">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TECHNICAL MASTERY BANNER -->
+  <section class="max-w-[1440px] mx-auto px-6 md:px-margin-edge mb-section-gap reveal">
+    <div class="glass-card rounded-lg p-12 md:p-16 relative overflow-hidden">
+      <div class="absolute right-0 top-0 w-1/2 h-full opacity-[0.04] pointer-events-none select-none overflow-hidden">
+        <span class="material-symbols-outlined text-white" style="font-size:280px;position:absolute;top:0;right:-60px;">settings_suggest</span>
+      </div>
+      <div class="relative z-10 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+        <div>
+          <h2 class="font-['Space_Grotesk'] font-black text-white mb-6" style="font-size:clamp(1.8rem,3vw,2.8rem);">TECHNISCH MEESTERSCHAP</h2>
+          <p class="font-['Inter'] text-lg text-on-surface-variant mb-8 leading-relaxed">Onze certificeringen door FOCWA en FLON 4000 garanderen een niveau van vakmanschap dat zeldzaam is in de industrie. Wij gebruiken uitsluitend laboratorium-geteste producten.</p>
+          <div class="flex gap-10">
+            <div>
+              <span class="font-['Space_Grotesk'] font-black text-white text-xl">FLON 4000</span>
+              <span class="font-['Space_Grotesk'] text-primary text-xs uppercase tracking-widest block mt-1">Authorized Partner</span>
+            </div>
+            <div>
+              <span class="font-['Space_Grotesk'] font-black text-white text-xl">FOCWA</span>
+              <span class="font-['Space_Grotesk'] text-primary text-xs uppercase tracking-widest block mt-1">Certified Studio</span>
+            </div>
+          </div>
+          <p class="mt-8 text-sm text-on-surface-variant leading-relaxed">Service blijft bij ons leidend: in overleg is een leenauto beschikbaar tijdens de behandeling (uitsluitend brandstofkosten voor rekening van de klant).</p>
+        </div>
+        <div class="flex md:justify-end">
+          <a href="reserveren.html" class="bg-primary text-on-primary font-['Space_Grotesk'] text-xs px-12 py-5 rounded-lg hover:shadow-[0_0_20px_rgba(173,199,255,0.2)] transition-all uppercase tracking-widest btn">ONTDEK ONZE WERKWIJZE</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TARIEVEN -->
+  <section id="tarieven" class="bg-surface-container-low py-section-gap px-6 md:px-margin-edge">
+    <div class="max-w-[1440px] mx-auto">
+      <div class="text-center mb-20 reveal">
+        <span class="font-['Space_Grotesk'] text-primary text-xs uppercase tracking-widest mb-4 block">Transparante Prijzen</span>
+        <h2 class="font-['Space_Grotesk'] font-black text-white mb-4" style="font-size:clamp(1.8rem,3vw,2.8rem);letter-spacing:0.02em;">TARIEVEN</h2>
+        <p class="font-['Inter'] text-on-surface-variant max-w-xl mx-auto">Alle behandelingen zijn op maat. Vermelde prijzen zijn starttarieven – de exacte prijs hangt af van het voertuigtype en de conditie.</p>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+        <div class="glass-card p-10 rounded-lg flex flex-col justify-between reveal">
+          <div>
+            <span class="material-symbols-outlined text-primary text-3xl mb-5 block">brush</span>
+            <h3 class="font-['Space_Grotesk'] font-bold text-white text-xl mb-3">Signature Gloss (Pakket A)</h3>
+            <p class="font-['Inter'] text-sm text-on-surface-variant mb-6 leading-relaxed">Exterieurbehandeling van lakdiagnose tot poetsen en hoogglanspolijsten.</p>
+            <ul class="space-y-2">
+              <li class="flex items-center gap-2 font-['Inter'] text-sm text-zinc-400"><span class="material-symbols-outlined text-primary text-base">check</span> Lakdiagnose</li>
+              <li class="flex items-center gap-2 font-['Inter'] text-sm text-zinc-400"><span class="material-symbols-outlined text-primary text-base">check</span> Velgenreiniging</li>
+              <li class="flex items-center gap-2 font-['Inter'] text-sm text-zinc-400"><span class="material-symbols-outlined text-primary text-base">check</span> Hoogglanspolijsten</li>
+            </ul>
+          </div>
+          <div class="border-t border-white/10 pt-6 mt-8 flex items-end justify-between">
+            <div>
+              <span class="font-['Space_Grotesk'] text-xs text-zinc-500 block mb-1 uppercase tracking-widest">Prijs</span>
+              <span class="font-['Space_Grotesk'] font-black text-3xl text-white">Op aanvraag</span>
+            </div>
+            <a href="reserveren.html" class="bg-primary/20 text-primary px-4 py-2 font-['Space_Grotesk'] text-xs uppercase tracking-widest hover:bg-primary hover:text-on-primary transition-all btn">Boek</a>
+          </div>
+        </div>
+
+        <div class="glass-card p-10 rounded-lg flex flex-col justify-between reveal d1">
+          <div>
+            <span class="material-symbols-outlined text-primary text-3xl mb-5 block">sanitizer</span>
+            <h3 class="font-['Space_Grotesk'] font-bold text-white text-xl mb-3">Interior Couture (Pakket B)</h3>
+            <p class="font-['Inter'] text-sm text-on-surface-variant mb-6 leading-relaxed">Interieur shampooneren en totaalreiniging van dashboard tot kofferruimte.</p>
+            <ul class="space-y-2">
+              <li class="flex items-center gap-2 font-['Inter'] text-sm text-zinc-400"><span class="material-symbols-outlined text-primary text-base">check</span> Stoel- en vloerbekleding</li>
+              <li class="flex items-center gap-2 font-['Inter'] text-sm text-zinc-400"><span class="material-symbols-outlined text-primary text-base">check</span> Hemelbekleding</li>
+              <li class="flex items-center gap-2 font-['Inter'] text-sm text-zinc-400"><span class="material-symbols-outlined text-primary text-base">check</span> Dashboard en kofferruimte</li>
+            </ul>
+          </div>
+          <div class="border-t border-white/10 pt-6 mt-8 flex items-end justify-between">
+            <div>
+              <span class="font-['Space_Grotesk'] text-xs text-zinc-500 block mb-1 uppercase tracking-widest">Prijs</span>
+              <span class="font-['Space_Grotesk'] font-black text-3xl text-white">Op aanvraag</span>
+            </div>
+            <a href="reserveren.html" class="bg-primary/20 text-primary px-4 py-2 font-['Space_Grotesk'] text-xs uppercase tracking-widest hover:bg-primary hover:text-on-primary transition-all btn">Boek</a>
+          </div>
+        </div>
+
+        <div class="glass-card p-10 rounded-lg flex flex-col justify-between reveal d2">
+          <div>
+            <span class="material-symbols-outlined text-primary text-3xl mb-5 block">layers</span>
+            <h3 class="font-['Space_Grotesk'] font-bold text-white text-xl mb-3">Prestige Complete (Pakket C)</h3>
+            <p class="font-['Inter'] text-sm text-on-surface-variant mb-6 leading-relaxed">Combinatie van pakket A en B inclusief uitgebreide motorruimte reiniging.</p>
+            <ul class="space-y-2">
+              <li class="flex items-center gap-2 font-['Inter'] text-sm text-zinc-400"><span class="material-symbols-outlined text-primary text-base">check</span> Exterieur reiniging</li>
+              <li class="flex items-center gap-2 font-['Inter'] text-sm text-zinc-400"><span class="material-symbols-outlined text-primary text-base">check</span> Interieur shampooneren</li>
+              <li class="flex items-center gap-2 font-['Inter'] text-sm text-zinc-400"><span class="material-symbols-outlined text-primary text-base">check</span> Motorcompartiment</li>
+            </ul>
+          </div>
+          <div class="border-t border-white/10 pt-6 mt-8 flex items-end justify-between">
+            <div>
+              <span class="font-['Space_Grotesk'] text-xs text-zinc-500 block mb-1 uppercase tracking-widest">Prijs</span>
+              <span class="font-['Space_Grotesk'] font-black text-3xl text-white">Op aanvraag</span>
+            </div>
+            <a href="reserveren.html" class="bg-primary/20 text-primary px-4 py-2 font-['Space_Grotesk'] text-xs uppercase tracking-widest hover:bg-primary hover:text-on-primary transition-all btn">Boek</a>
+          </div>
+        </div>
+
+        <div class="glass-card p-10 rounded-lg flex flex-col justify-between reveal">
+          <div>
+            <span class="material-symbols-outlined text-primary text-3xl mb-5 block">auto_awesome</span>
+            <h3 class="font-['Space_Grotesk'] font-bold text-white text-xl mb-3">Imperial Shield (Pakket D)</h3>
+            <p class="font-['Inter'] text-sm text-on-surface-variant mb-6 leading-relaxed">Clean Total uitgebreid met een hoogwaardige Hardwax-behandeling.</p>
+            <ul class="space-y-2">
+              <li class="flex items-center gap-2 font-['Inter'] text-sm text-zinc-400"><span class="material-symbols-outlined text-primary text-base">check</span> Pakket C als basis</li>
+              <li class="flex items-center gap-2 font-['Inter'] text-sm text-zinc-400"><span class="material-symbols-outlined text-primary text-base">check</span> Hardwax afwerking</li>
+              <li class="flex items-center gap-2 font-['Inter'] text-sm text-zinc-400"><span class="material-symbols-outlined text-primary text-base">check</span> Extra glans en bescherming</li>
+            </ul>
+          </div>
+          <div class="border-t border-white/10 pt-6 mt-8 flex items-end justify-between">
+            <div>
+              <span class="font-['Space_Grotesk'] text-xs text-zinc-500 block mb-1 uppercase tracking-widest">Prijs</span>
+              <span class="font-['Space_Grotesk'] font-black text-3xl text-white">Op aanvraag</span>
+            </div>
+            <a href="reserveren.html" class="bg-primary/20 text-primary px-4 py-2 font-['Space_Grotesk'] text-xs uppercase tracking-widest hover:bg-primary hover:text-on-primary transition-all btn">Boek</a>
+          </div>
+        </div>
+
+        <!-- Premium / featured -->
+        <div class="glass-card p-10 rounded-lg flex flex-col justify-between reveal d1 relative overflow-hidden border border-primary/25">
+          <div class="absolute top-4 right-4 bg-primary text-on-primary font-['Space_Grotesk'] text-[10px] px-3 py-1 uppercase tracking-widest">Premium</div>
+          <div>
+            <span class="material-symbols-outlined text-primary text-3xl mb-5 block">diamond</span>
+            <h3 class="font-['Space_Grotesk'] font-bold text-white text-xl mb-3">Coating Set 1</h3>
+            <p class="font-['Inter'] text-sm text-on-surface-variant mb-6 leading-relaxed">Losse coatingbehandelingen voor lak en glas, afgestemd op jouw voertuig en gebruik.</p>
+            <ul class="space-y-2">
+              <li class="flex items-center gap-2 font-['Inter'] text-sm text-zinc-400"><span class="material-symbols-outlined text-primary text-base">check</span> Ceramic Coating</li>
+              <li class="flex items-center gap-2 font-['Inter'] text-sm text-zinc-400"><span class="material-symbols-outlined text-primary text-base">check</span> Quartz Coating</li>
+              <li class="flex items-center gap-2 font-['Inter'] text-sm text-zinc-400"><span class="material-symbols-outlined text-primary text-base">check</span> PTFE Coating</li>
+            </ul>
+          </div>
+          <div class="border-t border-white/10 pt-6 mt-8 flex items-end justify-between">
+            <div>
+              <span class="font-['Space_Grotesk'] text-xs text-zinc-500 block mb-1 uppercase tracking-widest">Prijs</span>
+              <span class="font-['Space_Grotesk'] font-black text-3xl text-white">Op aanvraag</span>
+            </div>
+            <a href="reserveren.html" class="bg-primary text-on-primary px-4 py-2 font-['Space_Grotesk'] text-xs uppercase tracking-widest hover:opacity-90 btn">Boek</a>
+          </div>
+        </div>
+
+        <div class="glass-card p-10 rounded-lg flex flex-col justify-between reveal d2">
+          <div>
+            <span class="material-symbols-outlined text-primary text-3xl mb-5 block">rv_hookup</span>
+            <h3 class="font-['Space_Grotesk'] font-bold text-white text-xl mb-3">Coating Set 2</h3>
+            <p class="font-['Inter'] text-sm text-on-surface-variant mb-6 leading-relaxed">Specialistische coatings voor zicht, interieur en velgen.</p>
+            <ul class="space-y-2">
+              <li class="flex items-center gap-2 font-['Inter'] text-sm text-zinc-400"><span class="material-symbols-outlined text-primary text-base">check</span> Veilig Zicht Coating</li>
+              <li class="flex items-center gap-2 font-['Inter'] text-sm text-zinc-400"><span class="material-symbols-outlined text-primary text-base">check</span> Textiel Coating</li>
+              <li class="flex items-center gap-2 font-['Inter'] text-sm text-zinc-400"><span class="material-symbols-outlined text-primary text-base">check</span> Wheel Coating</li>
+            </ul>
+          </div>
+          <div class="border-t border-white/10 pt-6 mt-8 flex items-end justify-between">
+            <div>
+              <span class="font-['Space_Grotesk'] text-xs text-zinc-500 block mb-1 uppercase tracking-widest">Prijs</span>
+              <span class="font-['Space_Grotesk'] font-black text-xl text-white">Op aanvraag</span>
+            </div>
+            <a href="reserveren.html" class="bg-primary/20 text-primary px-4 py-2 font-['Space_Grotesk'] text-xs uppercase tracking-widest hover:bg-primary hover:text-on-primary transition-all btn">Offerte</a>
+          </div>
+        </div>
+
+      </div>
+      <p class="text-center font-['Space_Grotesk'] text-xs text-zinc-500 mt-10">Pakket- en coatingprijzen zijn op aanvraag en afhankelijk van voertuigtype en conditie. Vraag gerust een vrijblijvende prijsopgave aan.</p>
+    </div>
+  </section>
+
+</main>
+
+<!-- FOOTER -->
+<footer class="bg-zinc-950 border-t border-white/5 py-16 mt-16">
+  <div class="max-w-7xl mx-auto px-8 grid grid-cols-1 md:grid-cols-4 gap-12">
+    <div class="md:col-span-2">
+      <a href="index.html" class="font-['Space_Grotesk'] font-black text-zinc-100 text-lg mb-6 block">ZAAGMAN AUTOPOETSEN</a>
+      <p class="font-['Space_Grotesk'] text-xs text-zinc-500 mb-8 max-w-xs leading-relaxed">Specialisten in lakcorrectie, keramische coatings en interieur restauratie voor het hoogste segment.</p>
+      <div class="flex gap-3">
+        <a href="index.html" aria-label="Website" class="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center hover:text-blue-400 transition-colors"><span class="material-symbols-outlined text-base">public</span></a>
+        <a href="portfolio.html" aria-label="Instagram" class="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center hover:text-blue-400 transition-colors"><span class="material-symbols-outlined text-base">photo_camera</span></a>
+      </div>
+    </div>
+    <div>
+      <h4 class="font-['Space_Grotesk'] text-xs font-bold text-zinc-300 uppercase tracking-widest mb-6">Navigatie</h4>
+      <ul class="space-y-3">
+        <li><a href="index.html" class="font-['Space_Grotesk'] text-xs text-zinc-500 hover:text-zinc-300 transition-colors">Home</a></li>
+        <li><a href="diensten.html" class="font-['Space_Grotesk'] text-xs text-zinc-500 hover:text-zinc-300 transition-colors">Diensten</a></li>
+        <li><a href="portfolio.html" class="font-['Space_Grotesk'] text-xs text-zinc-500 hover:text-zinc-300 transition-colors">Portfolio</a></li>
+        <li><a href="reserveren.html" class="font-['Space_Grotesk'] text-xs text-zinc-500 hover:text-zinc-300 transition-colors">Afspraak Maken</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4 class="font-['Space_Grotesk'] text-xs font-bold text-zinc-300 uppercase tracking-widest mb-6">Contact</h4>
+      <address class="font-['Space_Grotesk'] text-xs text-zinc-500 not-italic leading-relaxed mb-4">Industriepark 3<br>9351 PA Leek<br>Nederland</address>
+      <div class="space-y-2 mb-4">
+        <a href="tel:+31594518254" class="font-['Space_Grotesk'] text-xs text-zinc-500 hover:text-zinc-300 transition-colors block">0594-518254</a>
+        <a href="mailto:info@zaagman-autopoetsen.nl" class="font-['Space_Grotesk'] text-xs text-zinc-500 hover:text-zinc-300 transition-colors block">info@zaagman-autopoetsen.nl</a>
+      </div>
+      <div class="space-y-1 mt-4 pt-4 border-t border-white/5">
+        <p class="font-['Space_Grotesk'] text-xs text-zinc-600">FOCWA Gecertificeerd</p>
+        <p class="font-['Space_Grotesk'] text-xs text-zinc-600">FLON 4000 Master Partner</p>
+      </div>
+    </div>
+  </div>
+  <div class="max-w-7xl mx-auto px-8 mt-12 pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4">
+    <p class="font-['Space_Grotesk'] text-xs text-zinc-500">© 2024 Zaagman Autopoetsen. Technical Mastery in Leek.</p>
+    <div class="flex gap-8">
+      <a href="mailto:info@zaagman-autopoetsen.nl?subject=Privacy%20Policy" class="font-['Space_Grotesk'] text-xs text-zinc-500 hover:text-blue-400 transition-colors">Privacy Policy</a>
+      <a href="mailto:info@zaagman-autopoetsen.nl?subject=Algemene%20Voorwaarden" class="font-['Space_Grotesk'] text-xs text-zinc-500 hover:text-blue-400 transition-colors">Algemene Voorwaarden</a>
+    </div>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+</body>
+</html>

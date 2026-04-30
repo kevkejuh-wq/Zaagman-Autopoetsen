@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="nl"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container": "#1f2020",
+                        "surface": "#131313",
+                        "surface-variant": "#353535",
+                        "on-error": "#690005",
+                        "on-tertiary-fixed-variant": "#41474e",
+                        "on-error-container": "#ffdad6",
+                        "on-primary-container": "#00285b",
+                        "tertiary-container": "#8b9199",
+                        "background": "#131313",
+                        "primary": "#adc7ff",
+                        "on-secondary-fixed-variant": "#474646",
+                        "on-tertiary-fixed": "#161c22",
+                        "secondary-fixed-dim": "#c9c6c5",
+                        "primary-fixed": "#d8e2ff",
+                        "inverse-on-surface": "#303030",
+                        "on-primary-fixed": "#001a41",
+                        "on-background": "#e4e2e1",
+                        "surface-container-highest": "#353535",
+                        "surface-dim": "#131313",
+                        "on-primary": "#002e68",
+                        "surface-container-lowest": "#0e0e0e",
+                        "error-container": "#93000a",
+                        "on-secondary-fixed": "#1c1b1b",
+                        "secondary-container": "#4a4949",
+                        "outline": "#8b90a0",
+                        "surface-container-high": "#2a2a2a",
+                        "surface-tint": "#adc7ff",
+                        "tertiary-fixed-dim": "#c1c7cf",
+                        "on-surface": "#e4e2e1",
+                        "inverse-primary": "#005bc0",
+                        "error": "#ffb4ab",
+                        "on-tertiary": "#2b3137",
+                        "on-secondary": "#313030",
+                        "surface-container-low": "#1b1c1c",
+                        "tertiary": "#c1c7cf",
+                        "secondary-fixed": "#e5e2e1",
+                        "surface-bright": "#393939",
+                        "primary-container": "#4a8eff",
+                        "on-tertiary-container": "#242a30",
+                        "outline-variant": "#414754",
+                        "on-surface-variant": "#c1c6d7",
+                        "on-secondary-container": "#bab8b7",
+                        "primary-fixed-dim": "#adc7ff",
+                        "tertiary-fixed": "#dde3eb",
+                        "secondary": "#c9c6c5",
+                        "inverse-surface": "#e4e2e1",
+                        "on-primary-fixed-variant": "#004493"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "section-gap": "128px",
+                        "gutter": "32px",
+                        "unit": "8px",
+                        "margin-edge": "64px",
+                        "container-max": "1440px"
+                    },
+                    "fontFamily": {
+                        "body-md": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "headline-xl": ["Space Grotesk"],
+                        "display-lg": ["Space Grotesk"],
+                        "label-sm": ["Space Grotesk"],
+                        "headline-md": ["Space Grotesk"]
+                    },
+                    "fontSize": {
+                        "body-md": ["16px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                        "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                        "headline-xl": ["48px", {"lineHeight": "1.2", "letterSpacing": "0.02em", "fontWeight": "700"}],
+                        "display-lg": ["72px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "label-sm": ["12px", {"lineHeight": "1", "letterSpacing": "0.1em", "fontWeight": "600"}],
+                        "headline-md": ["32px", {"lineHeight": "1.3", "fontWeight": "600"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .glass-card {
+            background: rgba(14, 14, 14, 0.6);
+            backdrop-filter: blur(20px);
+            border: 1px solid transparent;
+            border-image: linear-gradient(135deg, rgba(255,255,255,0.12) 0%, rgba(255,255,255,0.02) 100%) 1;
+        }
+        .glass-card:hover {
+            background: rgba(20, 20, 20, 0.7);
+            box-shadow: 0 0 25px rgba(173, 199, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+        .text-glow {
+            text-shadow: 0 0 15px rgba(173, 199, 255, 0.4);
+        }
+    
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .animate-fade-in-up {
+            animation: fadeInUp 0.8s ease-out forwards;
+            opacity: 0;
+        }
+        .delay-100 { animation-delay: 100ms; }
+        .delay-200 { animation-delay: 200ms; }
+        .delay-300 { animation-delay: 300ms; }
+        .hover-depth:hover img {
+            transform: scale(1.05) translateY(-5px);
+            filter: brightness(1.1);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md selection:bg-primary/30">
+<!-- TopAppBar Component -->
+<header class="fixed top-0 w-full z-50 bg-zinc-950/60 backdrop-blur-lg border-b border-white/10 shadow-[0_4px_30px_rgba(0,0,0,0.1)]">
+<div class="flex justify-between items-center h-20 px-8 md:px-16 w-full max-w-[1440px] mx-auto">
+<div class="text-xl font-bold tracking-tighter text-zinc-100">ZAAGMAN AUTOPOETSEN</div>
+<nav class="hidden md:flex items-center gap-10">
+<a class="font-['Space_Grotesk'] uppercase tracking-widest text-sm font-medium text-zinc-400 hover:text-zinc-100 transition-all duration-300" href="#">Diensten</a>
+<a class="font-['Space_Grotesk'] uppercase tracking-widest text-sm font-bold text-blue-500 border-b-2 border-blue-500 pb-1" href="#">Portfolio</a>
+<a class="font-['Space_Grotesk'] uppercase tracking-widest text-sm font-medium text-zinc-400 hover:text-zinc-100 transition-all duration-300" href="#">Onze Werkwijze</a>
+<a class="font-['Space_Grotesk'] uppercase tracking-widest text-sm font-medium text-zinc-400 hover:text-zinc-100 transition-all duration-300" href="#">Tarieven</a>
+</nav>
+<button class="px-6 py-2 bg-blue-600 text-white font-['Space_Grotesk'] font-bold text-xs tracking-widest hover:bg-blue-500 hover:shadow-[0_0_15px_rgba(0,123,255,0.3)] transition-all duration-300 active:scale-95">
+                AFSPRAAK MAKEN
+            </button>
+</div>
+</header>
+<main class="pt-32">
+<!-- Hero Section -->
+<section class="px-margin-edge mb-section-gap max-w-container-max mx-auto text-center">
+<span class="font-label-sm text-label-sm text-primary uppercase mb-4 block tracking-[0.3em]">Curated Showcase</span>
+<h1 class="font-display-lg text-display-lg text-on-surface mb-8">DE COLLECTIE</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl mx-auto opacity-80">
+                Een overzicht van onze meest uitdagende en verfijnde projecten. Van zeldzame supercars tot historische iconen, elke wagen ondergaat een metamorfose naar technische perfectie.
+            </p>
+</section>
+<!-- Category Filter -->
+<section class="px-margin-edge mb-16 max-w-container-max mx-auto">
+<div class="flex flex-wrap justify-center gap-8 border-b border-white/5 pb-8">
+<button class="font-label-sm text-label-sm text-primary border-b border-primary pb-2">ALLE COLLECTIES</button>
+<button class="font-label-sm text-label-sm text-on-surface-variant hover:text-on-surface transition-colors">SUPERCARS</button>
+<button class="font-label-sm text-label-sm text-on-surface-variant hover:text-on-surface transition-colors">CLASSICS</button>
+<button class="font-label-sm text-label-sm text-on-surface-variant hover:text-on-surface transition-colors">DAILY DRIVERS</button>
+</div>
+</section>
+<!-- Portfolio Grid (Bento Style) -->
+<section class="px-margin-edge mb-section-gap max-w-container-max mx-auto">
+<div class="grid grid-cols-1 md:grid-cols-12 gap-gutter">
+<!-- Large Item: Supercar -->
+<div class="md:col-span-8 group relative overflow-hidden rounded-lg aspect-[16/9] animate-fade-in-up hover-depth">
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent z-10 animate-fade-in-up hover-depth"></div>
+<img alt="Ferrari 488 Pista" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="A side-profile shot of a vibrant red Ferrari 488 Pista parked in a dimly lit, ultra-modern showroom. The lighting is cinematic, with soft highlights dancing across the aerodynamic curves of the body. The floor is a polished obsidian black that reflects the car's silhouette perfectly, emphasizing a high-end, luxury detailing aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDlGN8O1qw0RVYuqYGWp7FIgbkD74AVJ2m-eh81C8XBzV0WWWPiAMw9LHbunTfb-kEzVdWF3H26RCQougKJ3Xvy1BZ6hPRRgEsZg1JbUBSY-bh6YnjjryUWG5f-A-mH46R3oPrjxr5m5kMpsCg0sSY2NyVLueQj-P-iU48V6ZkvSvUWd2W-4UXacc7hhoscSHkgDnnG8RjEnHt_atFo7g8GJRi1SrC1l6zveikPtufJIyRO-QfPY-OKVzXrPDrj9RF51g4OgtpuSWuQ"/>
+<div class="absolute bottom-8 left-8 z-20 animate-fade-in-up delay-200 hover-depth">
+<span class="font-label-sm text-label-sm text-primary bg-primary/10 px-3 py-1 mb-2 inline-block">SUPERCARS</span>
+<h3 class="font-headline-md text-headline-md text-on-surface">Ferrari 488 Pista</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">Full Paint Correction &amp; Ceramic Coating</p>
+</div>
+</div>
+<!-- Small Item: Detail -->
+<div class="md:col-span-4 group relative overflow-hidden rounded-lg aspect-square md:aspect-auto animate-fade-in-up delay-100 hover-depth">
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent z-10 animate-fade-in-up hover-depth"></div>
+<img alt="Porsche 911" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="Macro close-up shot of a classic silver Porsche 911 headlight and front fender. The metallic flake of the paint is visible and perfectly uniform, demonstrating professional paint correction. The background is a soft-focus studio environment with cool blue tones, highlighting the precision and cleanliness of the detailing work." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDGf_S36kg2ogJCW6OAivda--mRlmbZGJJVFBsY1oPMmOSfE8E0vz61s-lhq93bvu1_CzmSbzjVxFDk_mmcscJIWyjM0BG0hOPSEVuYwvLlwwAWUz71fWUy-tvYzKU_uEo-bZWQF0XrDKVs-0EzHNpkMIHUDv5zYDrNJKYEP3l1NYSKJ31u_T0dYoepO59oFBun5_fe9jctgbEHopG7AkOVc1vRTQPNvmcQ2M-Usf0FwiKH4dG_i1f9nZqoDK1fkEBe1sOVwyvjX9rc"/>
+<div class="absolute bottom-8 left-8 z-20 animate-fade-in-up delay-200 hover-depth">
+<span class="font-label-sm text-label-sm text-primary bg-primary/10 px-3 py-1 mb-2 inline-block">CLASSICS</span>
+<h3 class="font-headline-md text-headline-md text-on-surface">Porsche 911 (964)</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">Interior Restoration</p>
+</div>
+</div>
+<!-- Middle Grid: Asymmetric Layout -->
+<div class="md:col-span-4 group relative overflow-hidden rounded-lg aspect-square animate-fade-in-up delay-200 hover-depth">
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent z-10 animate-fade-in-up hover-depth"></div>
+<img alt="Classic Mustang" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="A vintage black Mustang Boss 429 under harsh studio spotlights that reveal the mirror-like finish of the hood. The reflection of the overhead LED bars is sharp and straight, indicating a flawless surface. The atmosphere is moody and sophisticated, capturing the raw power and elegance of a restored American classic in a dark theme." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCWyR6BqKp4wH-DyIxXmkwPSydqFg3wOzW5LgwiYo22TH0hEOkFdG-TGNHpEKjIrOaSuLwE0_4F8nwQjePFUq64qtINxL4mmL6JBtm0E0v3AXGar0MC3TdfHak1iESczln0TUxoQ57R-yN1jZ01fsWlFFKN-nfxMgDpiox15t1-2d_jI6p7votSzCG5Sr6iokcgs-hovxzfz5Vivu22WRTBsUstVOh8YyJSCEG4HLA5CGDTTymH7cREIhysuNYMtNIyd4v_GqGoNgPj"/>
+<div class="absolute bottom-8 left-8 z-20 animate-fade-in-up delay-200 hover-depth">
+<span class="font-label-sm text-label-sm text-primary bg-primary/10 px-3 py-1 mb-2 inline-block">CLASSICS</span>
+<h3 class="font-headline-md text-headline-md text-on-surface">Mustang Boss 429</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">Concours Prep</p>
+</div>
+</div>
+<div class="md:col-span-8 group relative overflow-hidden rounded-lg aspect-[16/9] animate-fade-in-up delay-300 hover-depth">
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent z-10 animate-fade-in-up hover-depth"></div>
+<img alt="Audi RS6" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="An Audi RS6 Avant in Nardo Grey parked in a sleek, industrial garage. High-tech LED strips line the walls, casting a futuristic blue glow on the car's aggressive body lines. The car looks incredibly sharp and protected, showcasing a daily driver that has received elite-level ceramic coating treatment in a modern setting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDtPg9JakQTrkViPc9V2sLbHX2tIariylW0bS5VXg2aWPBXKKJfBfc2LFS6g-ab9CnPcH7Kwo-kqx406wrNk2uq9gtvgx8EzUPTIfG0PCdJfwic6v4V5TOJLhi47zYWx-GJdYLjGafRZ1ZA1tSHpW0i6bFoeEJxHvAxdTlQzCHWJUF2Yp_wcpRsuClvWcy8BHg23xrIkUvS_YSusVxPS_5QaVqv2iPQQRjWSW8fDeu3GCRNt4cucD9JdaLFmsmUycBp41i7fOj8tTON"/>
+<div class="absolute bottom-8 left-8 z-20 animate-fade-in-up delay-200 hover-depth">
+<span class="font-label-sm text-label-sm text-primary bg-primary/10 px-3 py-1 mb-2 inline-block">DAILY DRIVERS</span>
+<h3 class="font-headline-md text-headline-md text-on-surface">Audi RS6 Avant</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">FLON 4000 Protection</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Voor & Na Comparison Section -->
+<section class="bg-surface-container-low py-24 mb-section-gap border-y border-white/5">
+<div class="px-margin-edge max-w-container-max mx-auto">
+<div class="text-center mb-16">
+<span class="font-label-sm text-label-sm text-primary uppercase tracking-widest">Mastery in Action</span>
+<h2 class="font-headline-xl text-headline-xl text-on-surface mt-2 uppercase">VOOR &amp; NA RESTAURATIE</h2>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+<div class="space-y-6">
+<div class="glass-card p-1 rounded-lg animate-fade-in-up">
+<div class="relative overflow-hidden rounded-lg aspect-video">
+<img alt="Before and After Detailing" class="w-full h-full object-cover" data-alt="A split-screen view showing the transformation of a car's paintwork. The left side is dull and covered in heavy swirl marks and oxidation, while the right side is a deep, flawless, vibrant blue with a mirror-like finish. The contrast highlights the effectiveness of professional paint correction in a technical, clinical studio environment." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDerituT7X_ZMLBpOIiB3QHImZuruMeUaBrIsjYGqlqzv6rVtDlTg-Dg3E-i3zDhxQ1Ya7KE4OCxXGNSNRNARHl08NEWkkBo4HOFdoFPzGUMu0y8YfK55ItshYnlkCosFNImbJ_fnMs5fhSAMmAJqtFlCZpz5yRw_QLZHbnN5WRuVjBWCs9xFzuZcgS1aGhkNiDIz3_umWfJ1SMUBuoUF1SgRRF8Mqf6yyf6NepbxxL4KNqQw4T4g42aAyJHM4HGixXTOPBLX1X7uub"/>
+<div class="absolute top-4 left-4 bg-black/60 px-3 py-1 font-label-sm text-xs text-white">VOOR</div>
+<div class="absolute top-4 right-4 bg-primary px-3 py-1 font-label-sm text-xs text-on-primary">NA</div>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-4">
+<div class="glass-card p-6 rounded-lg text-center animate-fade-in-up">
+<span class="font-display-lg text-primary text-4xl block mb-2">98%</span>
+<p class="font-label-sm text-xs text-on-surface-variant uppercase">Krasverwijdering</p>
+</div>
+<div class="glass-card p-6 rounded-lg text-center animate-fade-in-up">
+<span class="font-display-lg text-primary text-4xl block mb-2">40u</span>
+<p class="font-label-sm text-xs text-on-surface-variant uppercase">Arbeidstijd</p>
+</div>
+</div>
+</div>
+<div class="md:pl-12">
+<h3 class="font-headline-md text-headline-md text-on-surface mb-6 italic">"De obsessie voor detail zit in ons DNA."</h3>
+<p class="font-body-lg text-body-lg text-on-surface-variant mb-8 leading-relaxed">
+                            Bij dit specifieke project aan een klassieke Jaguar E-Type hebben we de originele laklaag gered van decennia aan verwaarlozing. Door middel van een meerstaps polijstproces hebben we de diepte en glans hersteld zonder de historische integriteit van het voertuig aan te tasten.
+                        </p>
+<div class="flex items-center gap-4 text-primary">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">verified</span>
+<span class="font-label-sm text-sm tracking-widest uppercase">Gecertificeerd door FOCWA</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Gecertificeerde Kwaliteit Section -->
+<section class="px-margin-edge mb-section-gap max-w-container-max mx-auto">
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-12 items-start">
+<div class="lg:col-span-1 animate-fade-in-up hover-depth">
+<h2 class="font-headline-xl text-headline-xl text-on-surface uppercase mb-6">GECERTIFICEERDE KWALITEIT</h2>
+<p class="font-body-md text-body-md text-on-surface-variant mb-8">
+                        Met meer dan 30 jaar ervaring in het hoogste segment van autoverzorging, zijn wij trots partner van de meest gerenommeerde keurmerken in de industrie.
+                    </p>
+<div class="flex gap-8 items-center opacity-60 animate-fade-in-up delay-200 hover-depth">
+<span class="font-headline-md text-zinc-400 font-black">FOCWA</span>
+<span class="font-headline-md text-zinc-400 font-black">FLON 4000</span>
+</div>
+</div>
+<div class="lg:col-span-2 grid grid-cols-1 md:grid-cols-2 gap-gutter animate-fade-in-up delay-100 hover-depth">
+<div class="glass-card p-10 rounded-lg animate-fade-in-up hover-depth">
+<div class="w-12 h-12 bg-primary/20 rounded flex items-center justify-center mb-6 animate-fade-in-up hover-depth">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">shield</span>
+</div>
+<h4 class="font-headline-md text-2xl text-on-surface mb-4">FLON 4000 PTFE</h4>
+<p class="font-body-md text-on-surface-variant">De ultieme lakverzegeling. Wij zijn een van de weinige gecertificeerde applicateurs die deze technisch geavanceerde beschermlaag mogen aanbrengen voor langdurige bescherming.</p>
+</div>
+<div class="glass-card p-10 rounded-lg animate-fade-in-up delay-100 hover-depth">
+<div class="w-12 h-12 bg-primary/20 rounded flex items-center justify-center mb-6 animate-fade-in-up hover-depth">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">precision_manufacturing</span>
+</div>
+<h4 class="font-headline-md text-2xl text-on-surface mb-4">30 Jaar Expertise</h4>
+<p class="font-body-md text-on-surface-variant">Onze technieken zijn door de jaren heen verfijnd. We combineren traditioneel vakmanschap met de nieuwste chemische innovaties in de detailing wereld.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Final CTA Section -->
+<section class="px-margin-edge mb-section-gap">
+<div class="max-w-container-max mx-auto relative overflow-hidden rounded-xl bg-surface-container-highest p-16 md:p-32 text-center">
+<div class="absolute inset-0 z-0 opacity-20">
+<img alt="Luxury Interior" class="w-full h-full object-cover" data-alt="A dark, moody close-up of a luxury car steering wheel and dashboard at night. The interior is bathed in a soft blue ambient light, creating a high-tech, exclusive feeling. The image is used as a textured background for a call to action, emphasizing the premium quality of the detailing service." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDkQVh-azgYlwdhlMilKHMViKMW1eA2OTDJXJNOWhnWCwY-jejnsvAtMuVeXVBQwfiUQhbfinhK-P6YKIreJ6JUPlq-FnrJN6VKkNBFOf00egfr2Pw2dxXKTTqlYngiZ1PllP-bVdY-UAqXzgPilm2_vXpce7IIu0TcV3PbJs-zvSCBkmFRC14UtGEL2AJOkd8USfzfE_JvX6EBGKpWUlURQZkFBICeADHQdwdpXY5p4cMmY8_z1NNVCX5x3R5kURT_LbPjINoduofS"/>
+</div>
+<div class="relative z-10">
+<h2 class="font-headline-xl text-headline-xl text-on-surface mb-8">KLAAR OM UW ERFGOED TE BEWAREN?</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant mb-12 max-w-xl mx-auto">Neem contact op voor een persoonlijk behandelplan voor uw voertuig. Wij behandelen elke auto als een meesterwerk.</p>
+<div class="flex flex-wrap justify-center gap-6">
+<button class="px-10 py-5 bg-blue-600 text-white font-['Space_Grotesk'] font-bold text-sm tracking-widest rounded-lg hover:shadow-[0_0_30px_rgba(0,123,255,0.4)] transition-all active:scale-95">START EEN PROJECT</button>
+<button class="px-10 py-5 border border-white/20 text-on-surface font-['Space_Grotesk'] font-bold text-sm tracking-widest rounded-lg hover:bg-white/5 transition-all active:scale-95">BEKIJK TARIEVEN</button>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer Component -->
+<footer class="w-full py-16 mt-32 bg-zinc-950 border-t border-white/5">
+<div class="max-w-7xl mx-auto px-8 grid grid-cols-1 md:grid-cols-3 gap-12">
+<div>
+<div class="text-lg font-black text-zinc-100 mb-6 uppercase">ZAAGMAN AUTOPOETSEN</div>
+<p class="font-['Space_Grotesk'] text-xs tracking-tight text-zinc-500 max-w-xs">
+                    Gespecialiseerd in lakcorrectie, keramische coatings en interieur restauratie voor het hoogste segment.
+                </p>
+</div>
+<div class="flex flex-col gap-4">
+<span class="font-['Space_Grotesk'] text-xs font-bold text-zinc-300 uppercase tracking-widest">Snelle Links</span>
+<nav class="flex flex-col gap-2">
+<a class="font-['Space_Grotesk'] text-xs tracking-tight text-zinc-500 hover:text-blue-400 transition-colors duration-200" href="#">Contact</a>
+<a class="font-['Space_Grotesk'] text-xs tracking-tight text-zinc-500 hover:text-blue-400 transition-colors duration-200" href="#">Privacy Policy</a>
+<a class="font-['Space_Grotesk'] text-xs tracking-tight text-zinc-500 hover:text-blue-400 transition-colors duration-200" href="#">FOCWA Certified</a>
+<a class="font-['Space_Grotesk'] text-xs tracking-tight text-zinc-500 hover:text-blue-400 transition-colors duration-200" href="#">FLON 4000</a>
+</nav>
+</div>
+<div class="flex flex-col gap-4">
+<span class="font-['Space_Grotesk'] text-xs font-bold text-zinc-300 uppercase tracking-widest">Locatie</span>
+<p class="font-['Space_Grotesk'] text-xs tracking-tight text-zinc-500">
+                    Industriepark 12<br/>
+                    Leek, Nederland
+                </p>
+<div class="mt-4">
+<p class="font-['Space_Grotesk'] text-xs tracking-tight text-zinc-500">© 2024 Zaagman Autopoetsen. Technical Mastery in Leek.</p>
+</div>
+</div>
+</div>
+</footer>
+</body></html>

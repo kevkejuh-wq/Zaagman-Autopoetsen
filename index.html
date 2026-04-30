@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html class="dark" lang="nl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Zaagman Autopoetsen | Technisch Meesterschap in Leek</title>
+  <meta name="description" content="Zaagman Autopoetsen – 30 jaar expertise in lakcorrectie, keramische coatings en professionele voertuigverzorging in Leek. FOCWA gecertificeerd.">
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            'surface': '#131313', 'surface-container': '#1f2020', 'surface-container-low': '#1b1c1c',
+            'surface-container-high': '#2a2a2a', 'surface-container-highest': '#353535',
+            'surface-container-lowest': '#0e0e0e', 'on-surface': '#e4e2e1',
+            'on-surface-variant': '#c1c6d7', 'primary': '#adc7ff', 'on-primary': '#002e68',
+            'primary-container': '#4a8eff', 'on-primary-container': '#00285b',
+            'secondary-container': '#4a4949', 'background': '#131313', 'on-background': '#e4e2e1',
+          },
+          spacing: { 'section-gap': '128px', 'gutter': '32px', 'margin-edge': '64px', 'container-max': '1440px' },
+          fontFamily: { 'display': ['Space Grotesk'], 'body': ['Inter'] },
+          borderRadius: { 'DEFAULT': '0.125rem', 'lg': '0.25rem', 'xl': '0.5rem', 'full': '0.75rem' },
+        },
+      },
+    };
+  </script>
+  <style>
+    body { background-color: #131313; color: #e4e2e1; overflow-x: hidden; }
+    .glass-card {
+      background: rgba(14,14,14,0.6); backdrop-filter: blur(20px);
+      border: 1px solid transparent;
+      border-image: linear-gradient(135deg, rgba(255,255,255,0.12) 0%, rgba(255,255,255,0.03) 100%) 1;
+    }
+    .reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.7s ease, transform 0.7s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .reveal.d1 { transition-delay: 0.12s; }
+    .reveal.d2 { transition-delay: 0.24s; }
+    .reveal.d3 { transition-delay: 0.36s; }
+    .scard { transition: all 0.4s cubic-bezier(0.4,0,0.2,1); }
+    .scard:hover { transform: translateY(-6px); box-shadow: 0 20px 40px rgba(0,0,0,0.4), 0 0 20px rgba(173,199,255,0.08); }
+    .btn { transition: all 0.25s cubic-bezier(0.4,0,0.2,1); display: inline-block; }
+    .btn:hover { transform: scale(1.04); } .btn:active { transform: scale(0.97); }
+    .site-nav { transition: background 0.3s ease; }
+    .site-nav.scrolled { background: rgba(5,5,5,0.85) !important; }
+    .review-card {
+      position: relative;
+      background: linear-gradient(160deg, rgba(24,24,24,0.92), rgba(16,16,16,0.92));
+      border: 1px solid rgba(255,255,255,0.1);
+      transition: transform 0.4s cubic-bezier(0.4,0,0.2,1), box-shadow 0.4s ease, border-color 0.4s ease;
+      overflow: hidden;
+    }
+    .review-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      padding: 1px;
+      background: linear-gradient(135deg, rgba(173,199,255,0.45), rgba(255,255,255,0.08), rgba(173,199,255,0.18));
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      pointer-events: none;
+    }
+    .review-card::after {
+      content: "";
+      position: absolute;
+      width: 180px;
+      height: 180px;
+      top: -70px;
+      right: -70px;
+      background: radial-gradient(circle, rgba(173,199,255,0.25), transparent 70%);
+      pointer-events: none;
+      transition: opacity 0.4s ease;
+      opacity: 0.7;
+    }
+    .review-card:hover {
+      transform: translateY(-8px) scale(1.01);
+      border-color: rgba(173,199,255,0.35);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.45), 0 0 34px rgba(173,199,255,0.16);
+    }
+    .review-card:hover::after { opacity: 1; }
+    .review-stars {
+      animation: starsPulse 3.4s ease-in-out infinite;
+      text-shadow: 0 0 16px rgba(250,204,21,0.4);
+    }
+    @keyframes starsPulse {
+      0%, 100% { opacity: 0.9; transform: scale(1); }
+      50% { opacity: 1; transform: scale(1.04); }
+    }
+  </style>
+</head>
+<body class="font-['Inter']">
+
+<!-- NAVIGATION -->
+<nav class="site-nav fixed top-0 w-full z-50 bg-zinc-950/60 backdrop-blur-lg border-b border-white/10">
+  <div class="flex justify-between items-center h-20 px-6 md:px-16 w-full max-w-[1440px] mx-auto">
+    <a href="index.html" class="flex items-center gap-3">
+      <img src="images/zaagman_logo_transparant_schoon.png" alt="Zaagman Autopoetsen" class="h-14 md:h-16 w-auto">
+      <span class="font-['Space_Grotesk'] font-black text-base tracking-tighter text-zinc-100 hidden lg:block">ZAAGMAN AUTOPOETSEN</span>
+    </a>
+    <div class="hidden md:flex gap-8 items-center">
+      <a href="index.html" class="font-['Space_Grotesk'] uppercase tracking-widest text-sm font-bold text-blue-400 border-b-2 border-blue-400 pb-1">Home</a>
+      <a href="diensten.html" class="font-['Space_Grotesk'] uppercase tracking-widest text-sm font-medium text-zinc-400 hover:text-zinc-100 transition-colors">Diensten</a>
+      <a href="portfolio.html" class="font-['Space_Grotesk'] uppercase tracking-widest text-sm font-medium text-zinc-400 hover:text-zinc-100 transition-colors">Portfolio</a>
+      <a href="#werkwijze" class="font-['Space_Grotesk'] uppercase tracking-widest text-sm font-medium text-zinc-400 hover:text-zinc-100 transition-colors">Onze Werkwijze</a>
+      <a href="diensten.html#tarieven" class="font-['Space_Grotesk'] uppercase tracking-widest text-sm font-medium text-zinc-400 hover:text-zinc-100 transition-colors">Tarieven</a>
+    </div>
+    <div class="flex items-center gap-3">
+      <a href="reserveren.html" class="hidden md:inline-block bg-primary text-on-primary px-6 py-2.5 font-['Space_Grotesk'] text-xs uppercase tracking-widest btn">AFSPRAAK MAKEN</a>
+      <button id="mobile-menu-btn" class="md:hidden text-zinc-100 p-2" aria-label="Menu">
+        <span class="material-symbols-outlined text-2xl">menu</span>
+      </button>
+    </div>
+  </div>
+  <div id="mobile-menu" class="hidden md:hidden bg-zinc-950 border-t border-white/10">
+    <div class="flex flex-col px-8 py-8 gap-5">
+      <a href="index.html" class="font-['Space_Grotesk'] uppercase tracking-widest text-sm font-bold text-blue-400">Home</a>
+      <a href="diensten.html" class="font-['Space_Grotesk'] uppercase tracking-widest text-sm text-zinc-400">Diensten</a>
+      <a href="portfolio.html" class="font-['Space_Grotesk'] uppercase tracking-widest text-sm text-zinc-400">Portfolio</a>
+      <a href="#werkwijze" class="font-['Space_Grotesk'] uppercase tracking-widest text-sm text-zinc-400">Onze Werkwijze</a>
+      <a href="diensten.html#tarieven" class="font-['Space_Grotesk'] uppercase tracking-widest text-sm text-zinc-400">Tarieven</a>
+      <a href="reserveren.html" class="bg-primary text-on-primary py-3 font-['Space_Grotesk'] text-xs uppercase tracking-widest text-center mt-2">AFSPRAAK MAKEN</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header class="relative h-screen flex items-center justify-center overflow-hidden">
+  <div class="absolute inset-0 z-0">
+    <video
+      class="w-full h-full object-cover scale-110 opacity-50 pointer-events-none"
+      autoplay
+      muted
+      loop
+      playsinline
+      preload="metadata"
+    >
+      <source src="Video/Autopoetsbedrijf Zaagman in Leek (Groningen)_1080p.mp4" type="video/mp4">
+    </video>
+    <div class="absolute inset-0 bg-gradient-to-b from-transparent via-[#131313]/30 to-[#131313]"></div>
+  </div>
+  <div class="relative z-10 text-center px-4 max-w-5xl">
+    <span class="font-['Space_Grotesk'] text-primary uppercase tracking-[0.4em] text-xs mb-6 block">Technisch Meesterschap</span>
+    <h1 class="font-['Space_Grotesk'] font-black text-white mb-8 leading-none" style="font-size: clamp(3rem,8vw,5rem); letter-spacing:-0.02em;">PERFECTIE<br>HERDEFINIEERD</h1>
+    <p class="font-['Inter'] text-on-surface-variant max-w-2xl mx-auto mb-12 text-lg leading-relaxed">
+      Met 30 jaar expertise tillen wij voertuigonderhoud naar een moleculair niveau. In onze klinische studio in Leek transformeren wij elke auto tot een technisch kunstwerk.
+    </p>
+    <div class="flex flex-col sm:flex-row gap-4 justify-center">
+      <a href="diensten.html" class="bg-primary text-on-primary px-8 py-4 font-['Space_Grotesk'] text-xs tracking-widest uppercase hover:shadow-[0_0_20px_rgba(173,199,255,0.4)] btn">ONTDEK DE DIENSTEN</a>
+      <a href="#werkwijze" class="border border-white/20 bg-white/5 text-white px-8 py-4 font-['Space_Grotesk'] text-xs tracking-widest uppercase hover:bg-white/10 btn">ONZE WERKWIJZE</a>
+    </div>
+  </div>
+  <div class="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-1 opacity-40">
+    <span class="font-['Space_Grotesk'] text-xs uppercase tracking-widest text-zinc-400">Scroll</span>
+    <span class="material-symbols-outlined text-zinc-400 animate-bounce text-sm">keyboard_arrow_down</span>
+  </div>
+</header>
+
+<!-- DE ZAAGMAN STANDAARD / WERKWIJZE -->
+<section id="werkwijze" class="py-section-gap px-6 md:px-margin-edge max-w-[1440px] mx-auto">
+  <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center">
+    <div class="relative reveal">
+      <div class="absolute -top-12 -left-12 w-64 h-64 bg-primary/10 rounded-full blur-[80px] pointer-events-none"></div>
+      <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuCcOCahWIFQOzHsJYXXlxSpd1pX0nN-QUXxMEvLYNDPlw6zSjsCiVT6U7scGtpJ-c1Bt0L2A8QITbZo68lGYj5KlMdh2urPtgf0JTwXVj4E6UKb7j-eOZkE9no-nKUCNl-yhKmKK8IUKskXJXf76iWicWSBowtLzZT0kYtgfolANxAN2c1eH4jJhend5-lhM9HB_5jF9H4ju0ZG-1Cr8-sG8fnWtrokNK0ar8ZCLIJG7LvnLqlqB2q08hLUHzFnlGmclVsUzkOLuFzv"
+           alt="Professionele detailing technicus aan het werk" class="w-full h-auto rounded-lg shadow-2xl glass-card p-1">
+      <div class="absolute -bottom-8 -right-8 glass-card p-6 md:p-8 text-center">
+        <div class="font-['Space_Grotesk'] text-primary font-black" style="font-size:3rem;">30+</div>
+        <div class="font-['Space_Grotesk'] text-xs uppercase tracking-widest mt-1 text-zinc-400">Jaren Ervaring</div>
+      </div>
+    </div>
+    <div class="reveal d1">
+      <h2 class="font-['Space_Grotesk'] font-black text-white mb-10" style="font-size:clamp(1.8rem,3vw,2.8rem);letter-spacing:0.02em;">DE ZAAGMAN STANDAARD</h2>
+      <div class="space-y-9">
+        <div class="flex gap-5">
+          <div class="w-12 h-12 rounded bg-surface-container flex items-center justify-center shrink-0 border border-white/5">
+            <span class="material-symbols-outlined text-primary">precision_manufacturing</span>
+          </div>
+          <div>
+            <h3 class="font-['Space_Grotesk'] font-bold text-white text-lg mb-1.5">Technisch Meesterschap</h3>
+            <p class="font-['Inter'] text-on-surface-variant text-sm leading-relaxed">Elke behandeling begint bij een diepgaande analyse van de lakconditie voor een resultaat dat fabrieksspecificaties overtreft.</p>
+          </div>
+        </div>
+        <div class="flex gap-5">
+          <div class="w-12 h-12 rounded bg-surface-container flex items-center justify-center shrink-0 border border-white/5">
+            <span class="material-symbols-outlined text-primary">eco</span>
+          </div>
+          <div>
+            <h3 class="font-['Space_Grotesk'] font-bold text-white text-lg mb-1.5">Duurzame Coatings</h3>
+            <p class="font-['Inter'] text-on-surface-variant text-sm leading-relaxed">Onze FLON 4000 en keramische verzegelingen bieden een ondoordringbaar schild met diepe glans voor jaren.</p>
+          </div>
+        </div>
+        <div class="flex gap-5">
+          <div class="w-12 h-12 rounded bg-surface-container flex items-center justify-center shrink-0 border border-white/5">
+            <span class="material-symbols-outlined text-primary">sanitizer</span>
+          </div>
+          <div>
+            <h3 class="font-['Space_Grotesk'] font-bold text-white text-lg mb-1.5">Klinische Interieurreiniging</h3>
+            <p class="font-['Inter'] text-on-surface-variant text-sm leading-relaxed">Dieptereiniging tot in de kleinste poriën – wij herstellen de originele textuur en geur van elk materiaal.</p>
+          </div>
+        </div>
+        <div class="flex gap-5">
+          <div class="w-12 h-12 rounded bg-surface-container flex items-center justify-center shrink-0 border border-white/5">
+            <span class="material-symbols-outlined text-primary">route</span>
+          </div>
+          <div>
+            <h3 class="font-['Space_Grotesk'] font-bold text-white text-lg mb-1.5">Ons Werkproces</h3>
+            <p class="font-['Inter'] text-on-surface-variant text-sm leading-relaxed">Intake → Lak-analyse → Behandeling → Kwaliteitscontrole → Oplevering. Elk voertuig doorloopt ons strenge 5-staps protocol.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DIENSTEN OP MAAT (bento grid) -->
+<section class="bg-surface-container-low py-section-gap px-6 md:px-margin-edge overflow-hidden">
+  <div class="max-w-[1440px] mx-auto">
+    <div class="flex justify-between items-end mb-14 reveal">
+      <div class="max-w-xl">
+        <h2 class="font-['Space_Grotesk'] font-black text-white mb-4" style="font-size:clamp(1.8rem,3vw,2.8rem);letter-spacing:0.02em;">DIENSTEN OP MAAT</h2>
+        <p class="font-['Inter'] text-lg text-on-surface-variant">Gespecialiseerde zorg voor elk type voertuig, van exclusieve supercars tot waardevolle recreatiewagens.</p>
+      </div>
+      <a href="diensten.html" class="hidden md:flex items-center gap-2 font-['Space_Grotesk'] text-xs uppercase tracking-widest text-zinc-500 hover:text-primary transition-colors">
+        Alle diensten <span class="material-symbols-outlined text-sm">arrow_forward</span>
+      </a>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-12 gap-6 md:h-[800px]">
+      <a href="diensten.html" class="md:col-span-8 group relative overflow-hidden rounded-lg scard block">
+        <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDI4SBxSlNrzanLYEEH5A72Y_lVgKWy5L1KEzbsnUpm8V7vCmkk5gKCwhQlCu7bllCOKDkFK-1vD4Q0O0hDQoBaPCUGhM2-sGO6fA8gNp1h_-eFk9r0qCjPoQS16Ktbh1-j6efOYgg6Mg3LoCuWFJsuK-f39j6xmTR6ygUx3IFUIiTBeODM1v8takkKB_Jec6VVylnTysXrJCkAaDylriq_vsPcwCaQSchK9TwjFTbUBGUxDV64SWkbh94xPH4rsN4t7vAd1ocos5ug"
+             alt="Lakverzegeling" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+        <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
+        <div class="absolute bottom-10 left-10">
+          <h3 class="font-['Space_Grotesk'] font-bold text-white text-2xl mb-2">Lakverzegeling</h3>
+          <p class="font-['Inter'] text-on-surface-variant mb-5 max-w-sm text-sm">Langdurige bescherming met keramische coatings voor een ongeëvenaarde hydrofobische afwerking.</p>
+          <span class="bg-primary text-on-primary px-5 py-2 font-['Space_Grotesk'] text-xs uppercase tracking-widest">LEES MEER</span>
+        </div>
+      </a>
+      <a href="diensten.html" class="md:col-span-4 group relative overflow-hidden rounded-lg h-64 md:h-auto scard block">
+        <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuBz3o1AQjHqYHEyNO32R3ysMvyJ1AGFhW3FjxVIxQYz0rBgojPqgOSjctcOIFQcflXFKnYLj6FYm65Gc8Axg-u1qUdwMPAy-iuaJGTDLrc7oy7PKNjceaZPiE3hstvtutiNuUxoDG_dqOAPyXYt0bI-RFAP5I6W6NtoFcwnOrsu2nhd_1c9Wi5h0jI9vORcgrzTGqxRRn2qwsAmfs0cCUflq0L1Dsy_K7W1VSeHj_ro4WusHEj9QqN-ebH02_gbAPcdpOVo7fREd9dv"
+             alt="Interieur dieptereiniging" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+        <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
+        <div class="absolute bottom-10 left-10">
+          <h3 class="font-['Space_Grotesk'] font-bold text-white text-2xl mb-3">Dieptereiniging</h3>
+          <span class="text-primary font-['Space_Grotesk'] text-xs uppercase tracking-widest flex items-center gap-2">BEKIJK <span class="material-symbols-outlined text-sm">arrow_forward</span></span>
+        </div>
+      </a>
+      <a href="diensten.html" class="md:col-span-4 group relative overflow-hidden rounded-lg h-64 md:h-auto scard block">
+        <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuCpN_pXLkv9O_Da6vqL-1u6lcHpSz3XqB0uyLhoOplr2MKL0NwWVHZnEiJWM-ufR2G76HSjHskHAmjmSyEuzfCq-OF46RjRj-JNxARt1vGswSuJhIAVj5GbGTnJ1ksHP1U3vbwD7na17rlPyBXAEg1qZPDCDVecI7E6HVOtwomBpkZI0rd48a4fTS9YvmWOoB2duyou_BvTU7xk_sF4y76mUsh8Xqg7-vfaZu-pjA6DQW6GCx7ZNOOPN6-9-63Esq_6iGyGPfEXuAQf"
+             alt="Spotrepair" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+        <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
+        <div class="absolute bottom-10 left-10">
+          <h3 class="font-['Space_Grotesk'] font-bold text-white text-2xl mb-3">Spotrepair</h3>
+          <span class="text-primary font-['Space_Grotesk'] text-xs uppercase tracking-widest flex items-center gap-2">BEKIJK <span class="material-symbols-outlined text-sm">arrow_forward</span></span>
+        </div>
+      </a>
+      <a href="diensten.html" class="md:col-span-8 group relative overflow-hidden rounded-lg h-64 md:h-auto scard block">
+        <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuCYDPFl569blmHb1OL5YZfMZTqNE65lzqzhfAMm_D4uLSFY3aS-FYr37BU4NSk-OohSBbix9v-q5nk-NePjdRIqMqMMmYVJi_BvSkuJ6_vslBLAa2hE7ZAe4h9KNu0B_dCK5-16ILn9wDvwC1SRtcySjOKtiqILTC4c2Y6axxK3owm5vQEwhx1k0BF_OeyXXCPtuPXXfC0l3_v5UMe7CVj6EbKW2NFTPuvGlpGrSLd3nxWVP9qS6xAFyUwmLeoHkOIX-Zmv_y9VV6Xl"
+             alt="Caravan en camper reiniging" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+        <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
+        <div class="absolute bottom-10 left-10">
+          <h3 class="font-['Space_Grotesk'] font-bold text-white text-2xl mb-2">Caravan &amp; Camper</h3>
+          <p class="font-['Inter'] text-on-surface-variant text-sm max-w-sm">Specialistische reiniging en bescherming voor uw mobiele vakantieverblijf.</p>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- 30 JAAR PASSIE -->
+<section class="py-section-gap px-6 md:px-margin-edge">
+  <div class="max-w-7xl mx-auto glass-card p-10 md:p-16 relative overflow-hidden reveal">
+    <div class="absolute top-0 right-0 w-1/2 h-full opacity-[0.04] pointer-events-none select-none overflow-hidden">
+      <span class="material-symbols-outlined text-white" style="font-size:360px;position:absolute;top:-60px;right:-80px;">history</span>
+    </div>
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 md:gap-16 items-center relative z-10">
+      <div>
+        <h2 class="font-['Space_Grotesk'] font-black text-white mb-8" style="font-size:clamp(1.8rem,3vw,2.8rem);letter-spacing:0.02em;">30 JAAR PASSIE VOOR PERFECTIE</h2>
+        <p class="font-['Inter'] text-lg text-on-surface-variant mb-10 leading-relaxed">
+          Begonnen als een ambitieus familiebedrijf in Leek, is Zaagman Autopoetsen uitgegroeid tot een begrip in de regio voor exclusieve voertuigverzorging.
+        </p>
+        <div class="flex flex-wrap gap-6 items-center">
+          <div class="text-center group">
+            <div class="h-16 w-32 flex items-center justify-center border border-white/10 bg-white/5 p-4 rounded opacity-60 group-hover:opacity-100 transition-opacity">
+              <span class="font-['Space_Grotesk'] text-xl font-black text-white tracking-tighter">FOCWA</span>
+            </div>
+            <span class="font-['Space_Grotesk'] text-[10px] mt-2 block text-zinc-500 uppercase tracking-widest">Gecertificeerd</span>
+          </div>
+          <div class="text-center group">
+            <div class="h-16 w-36 flex items-center justify-center border border-white/10 bg-white/5 p-4 rounded opacity-60 group-hover:opacity-100 transition-opacity">
+              <span class="font-['Space_Grotesk'] text-base font-black text-white tracking-tighter">FLON 4000</span>
+            </div>
+            <span class="font-['Space_Grotesk'] text-[10px] mt-2 block text-zinc-500 uppercase tracking-widest">Master Partner</span>
+          </div>
+        </div>
+      </div>
+      <div class="grid grid-cols-2 gap-4">
+        <div class="space-y-4">
+          <div class="h-52 rounded bg-surface-container overflow-hidden">
+            <div class="w-full h-2 bg-primary"></div>
+            <div class="p-8">
+              <span class="font-['Space_Grotesk'] font-black text-4xl block mb-2">99%</span>
+              <p class="font-['Space_Grotesk'] text-xs uppercase tracking-widest text-zinc-400">Klanttevredenheid</p>
+            </div>
+          </div>
+          <div class="rounded bg-surface-container-high overflow-hidden p-8 border border-white/5">
+            <span class="material-symbols-outlined text-primary text-3xl mb-3 block">verified_user</span>
+            <p class="font-['Inter'] text-sm">Volledig verzekerd transport en opslag.</p>
+          </div>
+        </div>
+        <div class="space-y-4 pt-10">
+          <div class="rounded bg-surface-container-high overflow-hidden p-8 border border-white/5">
+            <span class="material-symbols-outlined text-primary text-3xl mb-3 block">award_star</span>
+            <p class="font-['Inter'] text-sm">Erkend FLON applicateur sinds 1994.</p>
+          </div>
+          <div class="h-52 rounded bg-primary overflow-hidden p-8 text-on-primary">
+            <span class="font-['Space_Grotesk'] font-black text-4xl block mb-2">12k+</span>
+            <p class="font-['Space_Grotesk'] text-xs uppercase tracking-widest">Voertuigen Behandeld</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- KLANTERVARINGEN -->
+<section class="py-section-gap px-6 md:px-margin-edge reveal">
+  <div class="text-center mb-16">
+    <h2 class="font-['Space_Grotesk'] font-black text-white mb-4" style="font-size:clamp(1.8rem,3vw,2.8rem);letter-spacing:0.02em;">GOOGLE REVIEWS</h2>
+    <p class="font-['Inter'] text-lg text-on-surface-variant max-w-2xl mx-auto">Echte ervaringen van klanten via Google Maps.</p>
+  </div>
+  <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+    <article class="review-card p-8 rounded-lg reveal">
+      <div class="flex items-center justify-between mb-5">
+        <span class="font-['Space_Grotesk'] text-xs uppercase tracking-widest text-primary">Google Review</span>
+        <span class="review-stars text-yellow-400 text-sm tracking-[0.2em]">★★★★★</span>
+      </div>
+      <p class="font-['Inter'] text-on-surface-variant leading-relaxed text-sm">
+        "Top service en super resultaat. Auto ziet er weer als nieuw uit en de communicatie was duidelijk en vriendelijk."
+      </p>
+      <p class="font-['Space_Grotesk'] text-xs text-zinc-400 uppercase tracking-widest mt-6">Klant uit Leek</p>
+    </article>
+    <article class="review-card p-8 rounded-lg reveal d1">
+      <div class="flex items-center justify-between mb-5">
+        <span class="font-['Space_Grotesk'] text-xs uppercase tracking-widest text-primary">Google Review</span>
+        <span class="review-stars text-yellow-400 text-sm tracking-[0.2em]">★★★★★</span>
+      </div>
+      <p class="font-['Inter'] text-on-surface-variant leading-relaxed text-sm">
+        "Heel netjes gewerkt, zowel binnen als buiten perfect schoon. Zeker een aanrader voor wie kwaliteit wil."
+      </p>
+      <p class="font-['Space_Grotesk'] text-xs text-zinc-400 uppercase tracking-widest mt-6">Klant uit Groningen</p>
+    </article>
+    <article class="review-card p-8 rounded-lg reveal d2">
+      <div class="flex items-center justify-between mb-5">
+        <span class="font-['Space_Grotesk'] text-xs uppercase tracking-widest text-primary">Google Review</span>
+        <span class="review-stars text-yellow-400 text-sm tracking-[0.2em]">★★★★★</span>
+      </div>
+      <p class="font-['Inter'] text-on-surface-variant leading-relaxed text-sm">
+        "Professioneel bedrijf met oog voor detail. Snelle planning en zeer tevreden met het eindresultaat."
+      </p>
+      <p class="font-['Space_Grotesk'] text-xs text-zinc-400 uppercase tracking-widest mt-6">Klant uit omgeving Leek</p>
+    </article>
+  </div>
+  <div class="text-center mt-12">
+    <a
+      href="https://www.google.com/maps/place/Zaagman+B.V./@53.1675929,6.3757555,16z/data=!4m8!3m7!1s0x47c835a4e12a73d3:0x3027315714534f50!8m2!3d53.1675897!4d6.3783304!9m1!1b1!16s%2Fg%2F1hc6d1l4_?entry=ttu&g_ep=EgoyMDI2MDQyNy4wIKXMDSoASAFQAw%3D%3D"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="inline-flex items-center gap-2 bg-primary text-on-primary px-8 py-4 font-['Space_Grotesk'] text-xs tracking-widest uppercase btn"
+    >
+      Bekijk alle reviews op Google
+      <span class="material-symbols-outlined text-base">open_in_new</span>
+    </a>
+  </div>
+  </section>
+
+<!-- CTA -->
+<section class="py-section-gap px-6 md:px-margin-edge reveal">
+  <div class="max-w-[1440px] mx-auto rounded-xl overflow-hidden relative">
+    <div class="absolute inset-0 bg-primary/10">
+      <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuCHuq5O8Rgv_dlvWoou4TKwYVgoGvOaMPH6VSGURQdWhSgi5OmuQPcKQNkcQOO9c3aDqwYPRl-cfCNbjv6Xu9mMVVWfOilwigYBC7Zp91ACHAG-CF-RmQPj0v2GIHfhJpJjvrtT0JgQUCerZ8wDe4ccwoL-IksgSWVYhNNXuRBhs7Nqp638exVXno-xvO54yjUEReCX6TX-5dJDdC6UbRttgsswuCSez3wlaqOjWaLoudNtlelu0lFKD75jTbj-WUOlxQ9qlxDUprzd"
+           alt="Hypercar detail" class="w-full h-full object-cover mix-blend-overlay opacity-25">
+    </div>
+    <div class="relative z-10 p-12 md:p-20 text-center flex flex-col items-center">
+      <h2 class="font-['Space_Grotesk'] font-black text-white mb-6" style="font-size:clamp(2rem,5vw,3.5rem);letter-spacing:-0.02em;">BEVEILIG UW INVESTERING</h2>
+      <p class="font-['Inter'] text-lg text-on-surface-variant max-w-2xl mb-10 leading-relaxed">
+        Uw voertuig verdient niets minder dan de Zaagman Standaard. Neem contact op voor een vrijblijvende lak-analyse.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-5">
+        <a href="reserveren.html" class="bg-primary text-on-primary px-10 py-5 font-['Space_Grotesk'] text-xs tracking-[0.2em] uppercase btn">BOEK EEN CONSULTATIE</a>
+        <a href="tel:+31594518254" class="border border-white/20 text-white px-10 py-5 font-['Space_Grotesk'] text-xs tracking-[0.2em] uppercase hover:bg-white/5 btn">BEL ONS DIRECT</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="bg-zinc-950 border-t border-white/5 py-16 mt-12">
+  <div class="max-w-7xl mx-auto px-8 grid grid-cols-1 md:grid-cols-4 gap-12">
+    <div class="md:col-span-2">
+      <a href="index.html" class="font-['Space_Grotesk'] font-black text-zinc-100 text-lg mb-6 block">ZAAGMAN AUTOPOETSEN</a>
+      <p class="font-['Space_Grotesk'] text-xs text-zinc-500 mb-8 max-w-xs leading-relaxed">
+        Technische perfectie en moleculaire lakbescherming sinds 1994. Uw partner in exclusief voertuigonderhoud in Noord-Nederland.
+      </p>
+      <div class="flex gap-3">
+        <a href="index.html" aria-label="Website" class="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center hover:border-blue-500/40 hover:text-blue-400 transition-colors">
+          <span class="material-symbols-outlined text-base">public</span>
+        </a>
+        <a href="portfolio.html" aria-label="Instagram" class="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center hover:border-blue-500/40 hover:text-blue-400 transition-colors">
+          <span class="material-symbols-outlined text-base">photo_camera</span>
+        </a>
+      </div>
+    </div>
+    <div>
+      <h4 class="font-['Space_Grotesk'] text-xs font-bold text-zinc-300 uppercase tracking-widest mb-6">Navigatie</h4>
+      <ul class="space-y-3">
+        <li><a href="index.html" class="font-['Space_Grotesk'] text-xs text-zinc-500 hover:text-zinc-300 transition-colors">Home</a></li>
+        <li><a href="diensten.html" class="font-['Space_Grotesk'] text-xs text-zinc-500 hover:text-zinc-300 transition-colors">Diensten</a></li>
+        <li><a href="portfolio.html" class="font-['Space_Grotesk'] text-xs text-zinc-500 hover:text-zinc-300 transition-colors">Portfolio</a></li>
+        <li><a href="reserveren.html" class="font-['Space_Grotesk'] text-xs text-zinc-500 hover:text-zinc-300 transition-colors">Afspraak Maken</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4 class="font-['Space_Grotesk'] text-xs font-bold text-zinc-300 uppercase tracking-widest mb-6">Contact</h4>
+      <address class="font-['Space_Grotesk'] text-xs text-zinc-500 not-italic leading-relaxed mb-4">
+        Industriepark 3<br>9351 PA Leek<br>Nederland
+      </address>
+      <div class="space-y-2 mb-4">
+        <a href="tel:+31594518254" class="font-['Space_Grotesk'] text-xs text-zinc-500 hover:text-zinc-300 transition-colors block">0594-518254</a>
+        <a href="mailto:info@zaagman-autopoetsen.nl" class="font-['Space_Grotesk'] text-xs text-zinc-500 hover:text-zinc-300 transition-colors block">info@zaagman-autopoetsen.nl</a>
+      </div>
+      <div class="space-y-1 mt-4 pt-4 border-t border-white/5">
+        <p class="font-['Space_Grotesk'] text-xs text-zinc-600">FOCWA Gecertificeerd</p>
+        <p class="font-['Space_Grotesk'] text-xs text-zinc-600">FLON 4000 Master Partner</p>
+      </div>
+    </div>
+  </div>
+  <div class="max-w-7xl mx-auto px-8 mt-12 pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4">
+    <p class="font-['Space_Grotesk'] text-xs text-zinc-500">© 2024 Zaagman Autopoetsen. Technical Mastery in Leek.</p>
+    <div class="flex gap-8">
+      <a href="mailto:info@zaagman-autopoetsen.nl?subject=Privacy%20Policy" class="font-['Space_Grotesk'] text-xs text-zinc-500 hover:text-blue-400 transition-colors">Privacy Policy</a>
+      <a href="mailto:info@zaagman-autopoetsen.nl?subject=Algemene%20Voorwaarden" class="font-['Space_Grotesk'] text-xs text-zinc-500 hover:text-blue-400 transition-colors">Algemene Voorwaarden</a>
+    </div>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+</body>
+</html>

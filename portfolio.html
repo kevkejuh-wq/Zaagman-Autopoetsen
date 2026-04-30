@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html class="dark" lang="nl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portfolio | Zaagman Autopoetsen</title>
+  <meta name="description" content="Portfolio Ford Mustang Mach E van Zaagman Autopoetsen. Bekijk het complete fotoproject.">
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            'surface': '#131313', 'surface-container': '#1f2020', 'surface-container-low': '#1b1c1c',
+            'surface-container-high': '#2a2a2a', 'surface-container-highest': '#353535',
+            'surface-container-lowest': '#0e0e0e', 'on-surface': '#e4e2e1',
+            'on-surface-variant': '#c1c6d7', 'primary': '#adc7ff', 'on-primary': '#002e68',
+            'primary-container': '#4a8eff', 'on-primary-container': '#00285b',
+            'background': '#131313', 'on-background': '#e4e2e1',
+          },
+          spacing: { 'section-gap': '128px', 'gutter': '32px', 'margin-edge': '64px', 'container-max': '1440px' },
+          borderRadius: { 'DEFAULT': '0.125rem', 'lg': '0.25rem', 'xl': '0.5rem', 'full': '0.75rem' },
+        },
+      },
+    };
+  </script>
+  <style>
+    body { background-color: #131313; color: #e4e2e1; overflow-x: hidden; }
+    .glass-card {
+      background: rgba(14,14,14,0.6); backdrop-filter: blur(20px);
+      border: 1px solid transparent;
+      border-image: linear-gradient(135deg, rgba(255,255,255,0.12) 0%, rgba(255,255,255,0.03) 100%) 1;
+    }
+    .glass-card:hover { background: rgba(20,20,20,0.7); box-shadow: 0 0 25px rgba(173,199,255,0.08); transition: all 0.3s; }
+    .reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.7s ease, transform 0.7s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .reveal.d1 { transition-delay: 0.12s; } .reveal.d2 { transition-delay: 0.24s; }
+    .btn { transition: all 0.25s cubic-bezier(0.4,0,0.2,1); display: inline-block; }
+    .btn:hover { transform: scale(1.04); } .btn:active { transform: scale(0.97); }
+    .site-nav { transition: background 0.3s ease; }
+    .site-nav.scrolled { background: rgba(5,5,5,0.85) !important; }
+    .project-card { cursor: pointer; }
+    .project-modal.open { display: flex; }
+  </style>
+</head>
+<body class="font-['Inter']">
+
+<!-- NAVIGATION -->
+<nav class="site-nav fixed top-0 w-full z-50 bg-zinc-950/60 backdrop-blur-lg border-b border-white/10">
+  <div class="flex justify-between items-center h-20 px-6 md:px-16 w-full max-w-[1440px] mx-auto">
+    <a href="index.html" class="flex items-center gap-3">
+      <img src="images/zaagman_logo_transparant_schoon.png" alt="Zaagman Autopoetsen" class="h-14 md:h-16 w-auto">
+      <span class="font-['Space_Grotesk'] font-black text-base tracking-tighter text-zinc-100 hidden lg:block">ZAAGMAN AUTOPOETSEN</span>
+    </a>
+    <div class="hidden md:flex gap-8 items-center">
+      <a href="index.html" class="font-['Space_Grotesk'] uppercase tracking-widest text-sm font-medium text-zinc-400 hover:text-zinc-100 transition-colors">Home</a>
+      <a href="diensten.html" class="font-['Space_Grotesk'] uppercase tracking-widest text-sm font-medium text-zinc-400 hover:text-zinc-100 transition-colors">Diensten</a>
+      <a href="portfolio.html" class="font-['Space_Grotesk'] uppercase tracking-widest text-sm font-bold text-blue-400 border-b-2 border-blue-400 pb-1">Portfolio</a>
+      <a href="index.html#werkwijze" class="font-['Space_Grotesk'] uppercase tracking-widest text-sm font-medium text-zinc-400 hover:text-zinc-100 transition-colors">Onze Werkwijze</a>
+      <a href="diensten.html#tarieven" class="font-['Space_Grotesk'] uppercase tracking-widest text-sm font-medium text-zinc-400 hover:text-zinc-100 transition-colors">Tarieven</a>
+    </div>
+    <div class="flex items-center gap-3">
+      <a href="reserveren.html" class="hidden md:inline-block bg-primary text-on-primary px-6 py-2.5 font-['Space_Grotesk'] text-xs uppercase tracking-widest btn">AFSPRAAK MAKEN</a>
+      <button id="mobile-menu-btn" class="md:hidden text-zinc-100 p-2" aria-label="Menu">
+        <span class="material-symbols-outlined text-2xl">menu</span>
+      </button>
+    </div>
+  </div>
+  <div id="mobile-menu" class="hidden md:hidden bg-zinc-950 border-t border-white/10">
+    <div class="flex flex-col px-8 py-8 gap-5">
+      <a href="index.html" class="font-['Space_Grotesk'] uppercase tracking-widest text-sm text-zinc-400">Home</a>
+      <a href="diensten.html" class="font-['Space_Grotesk'] uppercase tracking-widest text-sm text-zinc-400">Diensten</a>
+      <a href="portfolio.html" class="font-['Space_Grotesk'] uppercase tracking-widest text-sm font-bold text-blue-400">Portfolio</a>
+      <a href="index.html#werkwijze" class="font-['Space_Grotesk'] uppercase tracking-widest text-sm text-zinc-400">Onze Werkwijze</a>
+      <a href="diensten.html#tarieven" class="font-['Space_Grotesk'] uppercase tracking-widest text-sm text-zinc-400">Tarieven</a>
+      <a href="reserveren.html" class="bg-primary text-on-primary py-3 font-['Space_Grotesk'] text-xs uppercase tracking-widest text-center mt-2">AFSPRAAK MAKEN</a>
+    </div>
+  </div>
+</nav>
+
+<main class="pt-32">
+
+  <!-- HERO -->
+  <section class="px-6 md:px-margin-edge mb-section-gap max-w-[1440px] mx-auto text-center">
+    <span class="font-['Space_Grotesk'] text-primary text-xs uppercase tracking-[0.3em] mb-4 block">Portfolio</span>
+    <h1 class="font-['Space_Grotesk'] font-black text-white mb-8" style="font-size:clamp(2.5rem,6vw,4.5rem);letter-spacing:-0.02em;">PROJECTEN</h1>
+    <p class="font-['Inter'] text-lg text-on-surface-variant max-w-2xl mx-auto opacity-80 leading-relaxed">
+      Klik op een project om alle foto's te bekijken.
+    </p>
+  </section>
+
+  <!-- PROJECT BLOKKEN -->
+  <section class="px-6 md:px-margin-edge mb-section-gap max-w-[1440px] mx-auto">
+    <div id="project-grid" class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-gutter">
+      <button
+        type="button"
+        class="project-card reveal group relative overflow-hidden rounded-lg aspect-[16/10] text-left"
+        data-project="mustang-mach-e"
+        aria-label="Open Ford Mustang Mach E project"
+      >
+          <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent z-10"></div>
+          <img alt="Ford Mustang Mach E portfolio foto 1" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+               src="images/portfolio/portfolio-01.jpg">
+          <div class="absolute bottom-8 left-8 z-20">
+            <h3 class="font-['Space_Grotesk'] font-bold text-white text-2xl">Ford Mustang Mach E</h3>
+            <p class="font-['Inter'] text-sm text-on-surface-variant mt-2">Klik om foto's te openen</p>
+          </div>
+      </button>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="px-6 md:px-margin-edge mb-section-gap reveal">
+    <div class="max-w-[1440px] mx-auto relative overflow-hidden rounded-xl bg-surface-container-highest p-12 md:p-24 text-center">
+      <div class="absolute inset-0 z-0 opacity-15">
+        <img alt="Luxe interieur" class="w-full h-full object-cover"
+             src="https://lh3.googleusercontent.com/aida-public/AB6AXuDkQVh-azgYlwdhlMilKHMViKMW1eA2OTDJXJNOWhnWCwY-jejnsvAtMuVeXVBQwfiUQhbfinhK-P6YKIreJ6JUPlq-FnrJN6VKkNBFOf00egfr2Pw2dxXKTTqlYngiZ1PllP-bVdY-UAqXzgPilm2_vXpce7IIu0TcV3PbJs-zvSCBkmFRC14UtGEL2AJOkd8USfzfE_JvX6EBGKpWUlURQZkFBICeADHQdwdpXY5p4cMmY8_z1NNVCX5x3R5kURT_LbPjINoduofS">
+      </div>
+      <div class="relative z-10">
+        <h2 class="font-['Space_Grotesk'] font-black text-white mb-8" style="font-size:clamp(1.8rem,3vw,2.8rem);letter-spacing:0.02em;">KLAAR OM UW ERFGOED TE BEWAREN?</h2>
+        <p class="font-['Inter'] text-lg text-on-surface-variant mb-12 max-w-xl mx-auto leading-relaxed">Neem contact op voor een persoonlijk behandelplan. Wij behandelen elke auto als een meesterwerk.</p>
+        <div class="flex flex-wrap justify-center gap-6">
+          <a href="reserveren.html" class="px-10 py-5 bg-blue-600 text-white font-['Space_Grotesk'] font-bold text-xs tracking-widest uppercase hover:shadow-[0_0_30px_rgba(0,123,255,0.4)] transition-all btn">START EEN PROJECT</a>
+          <a href="diensten.html#tarieven" class="px-10 py-5 border border-white/20 text-on-surface font-['Space_Grotesk'] font-bold text-xs tracking-widest uppercase hover:bg-white/5 btn">BEKIJK TARIEVEN</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- PROJECT MODAL -->
+<div id="project-modal" class="project-modal fixed inset-0 z-[60] hidden items-center justify-center p-4 bg-black/80 backdrop-blur-sm">
+  <div class="w-full max-w-6xl max-h-[90vh] overflow-y-auto rounded-xl bg-surface-container-high border border-white/10 p-6 md:p-8">
+    <div class="flex items-center justify-between mb-6">
+      <h2 id="project-modal-title" class="font-['Space_Grotesk'] font-black text-white text-2xl">Ford Mustang Mach E</h2>
+      <button id="close-project-modal" type="button" class="text-zinc-300 hover:text-white transition-colors" aria-label="Sluit project">
+        <span class="material-symbols-outlined text-3xl">close</span>
+      </button>
+    </div>
+    <div id="project-modal-grid" class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <img alt="Ford Mustang Mach E portfolio foto 1" class="w-full rounded-lg object-cover aspect-[16/10]" src="images/portfolio/portfolio-01.jpg">
+      <img alt="Ford Mustang Mach E portfolio foto 2" class="w-full rounded-lg object-cover aspect-[16/10]" src="images/portfolio/portfolio-02.jpg">
+      <img alt="Ford Mustang Mach E portfolio foto 3" class="w-full rounded-lg object-cover aspect-[16/10]" src="images/portfolio/portfolio-03.jpg">
+      <img alt="Ford Mustang Mach E portfolio foto 4" class="w-full rounded-lg object-cover aspect-[16/10]" src="images/portfolio/portfolio-04.jpg">
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer class="bg-zinc-950 border-t border-white/5 py-16">
+  <div class="max-w-7xl mx-auto px-8 grid grid-cols-1 md:grid-cols-4 gap-12">
+    <div class="md:col-span-2">
+      <a href="index.html" class="font-['Space_Grotesk'] font-black text-zinc-100 text-lg mb-6 block">ZAAGMAN AUTOPOETSEN</a>
+      <p class="font-['Space_Grotesk'] text-xs text-zinc-500 mb-8 max-w-xs leading-relaxed">Gespecialiseerd in lakcorrectie, keramische coatings en interieur restauratie voor het hoogste segment.</p>
+      <div class="flex gap-3">
+        <a href="index.html" aria-label="Website" class="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center hover:text-blue-400 transition-colors"><span class="material-symbols-outlined text-base">public</span></a>
+        <a href="portfolio.html" aria-label="Instagram" class="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center hover:text-blue-400 transition-colors"><span class="material-symbols-outlined text-base">photo_camera</span></a>
+      </div>
+    </div>
+    <div>
+      <h4 class="font-['Space_Grotesk'] text-xs font-bold text-zinc-300 uppercase tracking-widest mb-6">Snelle Links</h4>
+      <ul class="space-y-3">
+        <li><a href="index.html" class="font-['Space_Grotesk'] text-xs text-zinc-500 hover:text-zinc-300 transition-colors">Home</a></li>
+        <li><a href="diensten.html" class="font-['Space_Grotesk'] text-xs text-zinc-500 hover:text-zinc-300 transition-colors">Diensten</a></li>
+        <li><a href="portfolio.html" class="font-['Space_Grotesk'] text-xs text-zinc-500 hover:text-zinc-300 transition-colors">Portfolio</a></li>
+        <li><a href="reserveren.html" class="font-['Space_Grotesk'] text-xs text-zinc-500 hover:text-zinc-300 transition-colors">Afspraak Maken</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4 class="font-['Space_Grotesk'] text-xs font-bold text-zinc-300 uppercase tracking-widest mb-6">Locatie</h4>
+      <address class="font-['Space_Grotesk'] text-xs text-zinc-500 not-italic leading-relaxed mb-4">Industriepark 3<br>9351 PA Leek<br>Nederland</address>
+      <div class="space-y-2 mb-4">
+        <a href="tel:+31594518254" class="font-['Space_Grotesk'] text-xs text-zinc-500 hover:text-zinc-300 transition-colors block">0594-518254</a>
+        <a href="mailto:info@zaagman-autopoetsen.nl" class="font-['Space_Grotesk'] text-xs text-zinc-500 hover:text-zinc-300 transition-colors block">info@zaagman-autopoetsen.nl</a>
+      </div>
+      <p class="font-['Space_Grotesk'] text-xs text-zinc-500">© 2024 Zaagman Autopoetsen.</p>
+    </div>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+<script>
+  const projectCards = document.querySelectorAll('.project-card');
+  const projectModal = document.getElementById('project-modal');
+  const closeProjectModalBtn = document.getElementById('close-project-modal');
+
+  const openProjectModal = () => {
+    projectModal.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  };
+
+  const closeProjectModal = () => {
+    projectModal.classList.remove('open');
+    document.body.style.overflow = '';
+  };
+
+  projectCards.forEach(card => {
+    card.addEventListener('click', openProjectModal);
+  });
+
+  closeProjectModalBtn.addEventListener('click', closeProjectModal);
+
+  projectModal.addEventListener('click', (event) => {
+    if (event.target === projectModal) {
+      closeProjectModal();
+    }
+  });
+
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape' && projectModal.classList.contains('open')) {
+      closeProjectModal();
+    }
+  });
+</script>
+</body>
+</html>
