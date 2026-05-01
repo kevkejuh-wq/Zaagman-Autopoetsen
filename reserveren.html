@@ -8,6 +8,7 @@
   <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@400;500;600;700;900&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/buttons.css">
   <script>
     tailwind.config = {
       darkMode: 'class',
@@ -34,8 +35,6 @@
       border: 1px solid transparent;
       border-image: linear-gradient(135deg, rgba(255,255,255,0.12) 0%, rgba(255,255,255,0.02) 100%) 1;
     }
-    .btn { transition: all 0.25s cubic-bezier(0.4,0,0.2,1); display: inline-block; }
-    .btn:hover { transform: scale(1.04); } .btn:active { transform: scale(0.97); }
     input, select, textarea {
       background: #1f2020; border: 1px solid rgba(255,255,255,0.1); color: #e4e2e1;
       padding: 1rem; width: 100%; outline: none; transition: border-color 0.2s;
@@ -78,7 +77,7 @@
       <a href="diensten.html#tarieven" class="font-['Space_Grotesk'] uppercase tracking-widest text-sm font-medium text-zinc-400 hover:text-zinc-100 transition-colors">Tarieven</a>
     </div>
     <div class="flex items-center gap-3">
-      <span class="hidden md:inline-block bg-primary text-on-primary px-6 py-2.5 font-['Space_Grotesk'] text-xs uppercase tracking-widest opacity-50">AFSPRAAK MAKEN</span>
+      <span class="hidden md:inline-flex btn-hero btn-hero-primary btn-hero-sm opacity-50 cursor-default select-none pointer-events-none" aria-current="page">Afspraak maken</span>
       <button id="mobile-menu-btn" class="md:hidden text-zinc-100 p-2" aria-label="Menu">
         <span class="material-symbols-outlined text-2xl">menu</span>
       </button>
@@ -91,6 +90,7 @@
       <a href="portfolio.html" class="font-['Space_Grotesk'] uppercase tracking-widest text-sm text-zinc-400">Portfolio</a>
       <a href="index.html#werkwijze" class="font-['Space_Grotesk'] uppercase tracking-widest text-sm text-zinc-400">Onze Werkwijze</a>
       <a href="diensten.html#tarieven" class="font-['Space_Grotesk'] uppercase tracking-widest text-sm text-zinc-400">Tarieven</a>
+      <span class="inline-flex btn-hero btn-hero-primary btn-hero-sm opacity-50 cursor-default select-none pointer-events-none justify-center text-center mt-2 w-full" aria-current="page">Afspraak maken</span>
     </div>
   </div>
 </nav>
@@ -228,7 +228,7 @@
             </div>
           </div>
           <div class="flex justify-end pt-4">
-            <button onclick="goToStep(2)" class="bg-primary text-on-primary px-12 py-4 font-['Space_Grotesk'] text-sm uppercase tracking-widest hover:shadow-[0_0_20px_rgba(173,199,255,0.3)] btn">Volgende Stap →</button>
+            <button type="button" onclick="goToStep(2)" class="btn-hero btn-hero-primary btn-hero-lg">Volgende stap →</button>
           </div>
         </div>
 
@@ -290,8 +290,8 @@
           </div>
           <p id="service-error" class="text-red-400 text-xs font-['Space_Grotesk'] hidden">Selecteer een dienst om door te gaan.</p>
           <div class="flex justify-between pt-4">
-            <button onclick="goToStep(1)" class="border border-white/20 text-zinc-400 px-8 py-4 font-['Space_Grotesk'] text-sm uppercase tracking-widest hover:bg-white/5 btn">← Terug</button>
-            <button onclick="nextFromStep2()" class="bg-primary text-on-primary px-12 py-4 font-['Space_Grotesk'] text-sm uppercase tracking-widest hover:shadow-[0_0_20px_rgba(173,199,255,0.3)] btn">Volgende Stap →</button>
+            <button type="button" onclick="goToStep(1)" class="btn-hero btn-hero-outline btn-hero-sm">← Terug</button>
+            <button type="button" onclick="nextFromStep2()" class="btn-hero btn-hero-primary btn-hero-lg">Volgende stap →</button>
           </div>
         </div>
 
@@ -332,8 +332,8 @@
           </div>
           <p id="planning-error" class="text-red-400 text-xs font-['Space_Grotesk'] hidden">Selecteer een datum en tijd.</p>
           <div class="flex justify-between pt-4">
-            <button onclick="goToStep(2)" class="border border-white/20 text-zinc-400 px-8 py-4 font-['Space_Grotesk'] text-sm uppercase tracking-widest hover:bg-white/5 btn">← Terug</button>
-            <button onclick="nextFromStep3()" class="bg-primary text-on-primary px-12 py-4 font-['Space_Grotesk'] text-sm uppercase tracking-widest hover:shadow-[0_0_20px_rgba(173,199,255,0.3)] btn">Volgende Stap →</button>
+            <button type="button" onclick="goToStep(2)" class="btn-hero btn-hero-outline btn-hero-sm">← Terug</button>
+            <button type="button" onclick="nextFromStep3()" class="btn-hero btn-hero-primary btn-hero-lg">Volgende stap →</button>
           </div>
         </div>
 
@@ -367,8 +367,8 @@
           </div>
           <p id="eigenaar-error" class="text-red-400 text-xs font-['Space_Grotesk'] hidden">Vul naam, e-mail en telefoonnummer in.</p>
           <div class="flex justify-between pt-4">
-            <button onclick="goToStep(3)" class="border border-white/20 text-zinc-400 px-8 py-4 font-['Space_Grotesk'] text-sm uppercase tracking-widest hover:bg-white/5 btn">← Terug</button>
-            <button onclick="submitForm()" class="bg-primary text-on-primary px-12 py-4 font-['Space_Grotesk'] text-sm uppercase tracking-widest hover:shadow-[0_0_20px_rgba(173,199,255,0.4)] btn">Bevestig Reservering</button>
+            <button type="button" onclick="goToStep(3)" class="btn-hero btn-hero-outline btn-hero-sm">← Terug</button>
+            <button type="button" onclick="submitForm()" class="btn-hero btn-hero-primary btn-hero-lg">Bevestig reservering</button>
           </div>
         </div>
 
@@ -399,7 +399,7 @@
               <span id="conf-naam" class="font-['Space_Grotesk'] text-sm text-white font-bold"></span>
             </div>
           </div>
-          <a href="index.html" class="bg-primary text-on-primary px-10 py-4 font-['Space_Grotesk'] text-xs uppercase tracking-widest btn">Terug naar Home</a>
+          <a href="index.html" class="btn-hero btn-hero-primary btn-hero-lg">Terug naar home</a>
         </div>
 
       </div>

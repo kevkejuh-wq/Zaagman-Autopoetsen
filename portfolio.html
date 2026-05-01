@@ -8,6 +8,7 @@
   <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@400;500;600;700;900&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/buttons.css">
   <script>
     tailwind.config = {
       darkMode: 'class',
@@ -38,8 +39,6 @@
     .reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.7s ease, transform 0.7s ease; }
     .reveal.visible { opacity: 1; transform: translateY(0); }
     .reveal.d1 { transition-delay: 0.12s; } .reveal.d2 { transition-delay: 0.24s; }
-    .btn { transition: all 0.25s cubic-bezier(0.4,0,0.2,1); display: inline-block; }
-    .btn:hover { transform: scale(1.04); } .btn:active { transform: scale(0.97); }
     .site-nav { transition: background 0.3s ease; }
     .site-nav.scrolled { background: rgba(5,5,5,0.85) !important; }
     .project-card { cursor: pointer; }
@@ -63,7 +62,7 @@
       <a href="diensten.html#tarieven" class="font-['Space_Grotesk'] uppercase tracking-widest text-sm font-medium text-zinc-400 hover:text-zinc-100 transition-colors">Tarieven</a>
     </div>
     <div class="flex items-center gap-3">
-      <a href="reserveren.html" class="hidden md:inline-block bg-primary text-on-primary px-6 py-2.5 font-['Space_Grotesk'] text-xs uppercase tracking-widest btn">AFSPRAAK MAKEN</a>
+      <a href="reserveren.html" class="hidden md:inline-flex btn-hero btn-hero-primary btn-hero-sm">Afspraak maken</a>
       <button id="mobile-menu-btn" class="md:hidden text-zinc-100 p-2" aria-label="Menu">
         <span class="material-symbols-outlined text-2xl">menu</span>
       </button>
@@ -76,7 +75,7 @@
       <a href="portfolio.html" class="font-['Space_Grotesk'] uppercase tracking-widest text-sm font-bold text-blue-400">Portfolio</a>
       <a href="index.html#werkwijze" class="font-['Space_Grotesk'] uppercase tracking-widest text-sm text-zinc-400">Onze Werkwijze</a>
       <a href="diensten.html#tarieven" class="font-['Space_Grotesk'] uppercase tracking-widest text-sm text-zinc-400">Tarieven</a>
-      <a href="reserveren.html" class="bg-primary text-on-primary py-3 font-['Space_Grotesk'] text-xs uppercase tracking-widest text-center mt-2">AFSPRAAK MAKEN</a>
+      <a href="reserveren.html" class="btn-hero btn-hero-primary w-full justify-center text-center mt-2">Afspraak maken</a>
     </div>
   </div>
 </nav>
@@ -123,8 +122,8 @@
         <h2 class="font-['Space_Grotesk'] font-black text-white mb-8" style="font-size:clamp(1.8rem,3vw,2.8rem);letter-spacing:0.02em;">VRAAGT UW AUTO OM DEZELFDE AANDACHT?</h2>
         <p class="font-['Inter'] text-lg text-on-surface-variant mb-12 max-w-xl mx-auto leading-relaxed">Neem gerust contact op of maak een afspraak. We bespreken samen wat er mogelijk is voor uw voertuig.</p>
         <div class="flex flex-wrap justify-center gap-6">
-          <a href="reserveren.html" class="px-10 py-5 bg-blue-600 text-white font-['Space_Grotesk'] font-bold text-xs tracking-widest uppercase hover:shadow-[0_0_30px_rgba(0,123,255,0.4)] transition-all btn">START EEN PROJECT</a>
-          <a href="diensten.html#tarieven" class="px-10 py-5 border border-white/20 text-on-surface font-['Space_Grotesk'] font-bold text-xs tracking-widest uppercase hover:bg-white/5 btn">BEKIJK TARIEVEN</a>
+          <a href="reserveren.html" class="btn-hero btn-hero-primary btn-hero-lg">Start een project</a>
+          <a href="diensten.html#tarieven" class="btn-hero btn-hero-outline btn-hero-lg">Bekijk tarieven</a>
         </div>
       </div>
     </div>

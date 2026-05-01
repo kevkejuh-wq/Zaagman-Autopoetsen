@@ -8,6 +8,7 @@
   <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@400;500;600;700;900&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/buttons.css">
   <script>
     tailwind.config = {
       darkMode: 'class',
@@ -42,8 +43,6 @@
     .reveal.d3 { transition-delay: 0.36s; }
     .scard { transition: all 0.4s cubic-bezier(0.4,0,0.2,1); }
     .scard:hover { transform: translateY(-6px); box-shadow: 0 20px 40px rgba(0,0,0,0.4), 0 0 20px rgba(173,199,255,0.08); }
-    .btn { transition: all 0.25s cubic-bezier(0.4,0,0.2,1); display: inline-block; }
-    .btn:hover { transform: scale(1.04); } .btn:active { transform: scale(0.97); }
     .site-nav { transition: background 0.3s ease; }
     .site-nav.scrolled { background: rgba(5,5,5,0.85) !important; }
     .review-card {
@@ -83,6 +82,99 @@
       box-shadow: 0 20px 40px rgba(0,0,0,0.45), 0 0 34px rgba(173,199,255,0.16);
     }
     .review-card:hover::after { opacity: 1; }
+    /* Reviews carousel — 3D circular wheel */
+    .reviews-viewport {
+      position: relative;
+      max-width: 72rem;
+      margin-left: auto;
+      margin-right: auto;
+      perspective: 2000px;
+      perspective-origin: 50% 42%;
+    }
+    .reviews-stage {
+      position: relative;
+      min-height: 22rem;
+      transform-style: preserve-3d;
+      --rotation: 0deg;
+      --radius: 430px;
+      transform: translateZ(calc(var(--radius) * -1)) rotateY(var(--rotation));
+      transition: transform 1s cubic-bezier(0.22, 0.61, 0.36, 1);
+      will-change: transform;
+    }
+    @media (min-width: 768px) {
+      .reviews-stage { min-height: 18rem; }
+    }
+    @media (max-width: 767px) {
+      .reviews-stage { --radius: 330px; }
+    }
+    .reviews-slide-layer {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 0;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+      transform-style: preserve-3d;
+      backface-visibility: hidden;
+      --angle: 0deg;
+      transform: rotateY(var(--angle)) translateZ(var(--radius));
+      opacity: 0.38;
+      filter: blur(2px) saturate(0.72);
+      pointer-events: none;
+      z-index: 1;
+      transition:
+        opacity 0.65s ease,
+        filter 0.65s ease;
+      will-change: opacity, filter;
+    }
+    @media (min-width: 768px) {
+      .reviews-slide-layer {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+    .reviews-slide-layer.is-active {
+      opacity: 1;
+      filter: blur(0);
+      pointer-events: auto;
+      z-index: 3;
+    }
+    .reviews-slide-layer.is-near {
+      opacity: 0.64;
+      filter: blur(1px) saturate(0.9);
+    }
+    .reviews-slide-layer.is-far {
+      opacity: 0.24;
+      filter: blur(3px) saturate(0.6);
+    }
+    .reviews-stage.no-anim,
+    .reviews-stage.no-anim .reviews-slide-layer {
+      transition: none !important;
+    }
+    .reviews-dots {
+      display: flex;
+      justify-content: center;
+      gap: 0.5rem;
+      margin-top: 1.75rem;
+    }
+    .reviews-dot {
+      width: 0.5rem;
+      height: 0.5rem;
+      border-radius: 9999px;
+      background: rgba(255, 255, 255, 0.15);
+      border: none;
+      padding: 0;
+      cursor: pointer;
+      transition: background 0.3s ease, transform 0.3s ease;
+    }
+    .reviews-dot[aria-current="true"] {
+      background: #adc7ff;
+      transform: scale(1.25);
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .reviews-stage,
+      .reviews-slide-layer { transition-duration: 0.01ms !important; }
+    }
     .review-stars {
       animation: starsPulse 3.4s ease-in-out infinite;
       text-shadow: 0 0 16px rgba(250,204,21,0.4);
@@ -110,7 +202,7 @@
       <a href="diensten.html#tarieven" class="font-['Space_Grotesk'] uppercase tracking-widest text-sm font-medium text-zinc-400 hover:text-zinc-100 transition-colors">Tarieven</a>
     </div>
     <div class="flex items-center gap-3">
-      <a href="reserveren.html" class="hidden md:inline-block bg-primary text-on-primary px-6 py-2.5 font-['Space_Grotesk'] text-xs uppercase tracking-widest btn">AFSPRAAK MAKEN</a>
+      <a href="reserveren.html" class="hidden md:inline-flex btn-hero btn-hero-primary btn-hero-sm">Afspraak maken</a>
       <button id="mobile-menu-btn" class="md:hidden text-zinc-100 p-2" aria-label="Menu">
         <span class="material-symbols-outlined text-2xl">menu</span>
       </button>
@@ -123,7 +215,7 @@
       <a href="portfolio.html" class="font-['Space_Grotesk'] uppercase tracking-widest text-sm text-zinc-400">Portfolio</a>
       <a href="#werkwijze" class="font-['Space_Grotesk'] uppercase tracking-widest text-sm text-zinc-400">Onze Werkwijze</a>
       <a href="diensten.html#tarieven" class="font-['Space_Grotesk'] uppercase tracking-widest text-sm text-zinc-400">Tarieven</a>
-      <a href="reserveren.html" class="bg-primary text-on-primary py-3 font-['Space_Grotesk'] text-xs uppercase tracking-widest text-center mt-2">AFSPRAAK MAKEN</a>
+      <a href="reserveren.html" class="btn-hero btn-hero-primary w-full justify-center text-center mt-2">Afspraak maken</a>
     </div>
   </div>
 </nav>
@@ -149,9 +241,9 @@
     <p class="font-['Inter'] text-on-surface-variant max-w-2xl mx-auto mb-12 text-lg leading-relaxed">
       Al meer dan dertig jaar poetsen, beschermen en onderhouden we auto’s met zorg en vakmanschap. In onze werkplaats in Leek krijgt uw voertuig de aandacht die het verdient – helder advies en een resultaat waar u op kunt vertrouwen.
     </p>
-    <div class="flex flex-col sm:flex-row gap-4 justify-center">
-      <a href="diensten.html" class="bg-primary text-on-primary px-8 py-4 font-['Space_Grotesk'] text-xs tracking-widest uppercase hover:shadow-[0_0_20px_rgba(173,199,255,0.4)] btn">ONTDEK DE DIENSTEN</a>
-      <a href="#werkwijze" class="border border-white/20 bg-white/5 text-white px-8 py-4 font-['Space_Grotesk'] text-xs tracking-widest uppercase hover:bg-white/10 btn">ONZE WERKWIJZE</a>
+    <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+      <a href="diensten.html" class="btn-hero btn-hero-primary">Ontdek de diensten</a>
+      <a href="#werkwijze" class="btn-hero btn-hero-outline">Onze werkwijze</a>
     </div>
   </div>
   <div class="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-1 opacity-40">
@@ -224,8 +316,8 @@
         <h2 class="font-['Space_Grotesk'] font-black text-white mb-4" style="font-size:clamp(1.8rem,3vw,2.8rem);letter-spacing:0.02em;">DIENSTEN OP MAAT</h2>
         <p class="font-['Inter'] text-lg text-on-surface-variant">Of het nu uw dagelijkse auto, camper of bedrijfsbus is: we stemmen de behandeling af op uw voertuig en uw wensen.</p>
       </div>
-      <a href="diensten.html" class="hidden md:flex items-center gap-2 font-['Space_Grotesk'] text-xs uppercase tracking-widest text-zinc-500 hover:text-primary transition-colors">
-        Alle diensten <span class="material-symbols-outlined text-sm">arrow_forward</span>
+      <a href="diensten.html" class="hidden md:inline-flex btn-hero btn-hero-outline btn-hero-sm">
+        Alle diensten <span class="material-symbols-outlined text-sm" aria-hidden="true">arrow_forward</span>
       </a>
     </div>
     <div class="grid grid-cols-1 md:grid-cols-12 gap-6 md:h-[800px]">
@@ -236,7 +328,7 @@
         <div class="absolute bottom-10 left-10">
           <h3 class="font-['Space_Grotesk'] font-bold text-white text-2xl mb-2">Lakverzegeling</h3>
           <p class="font-['Inter'] text-on-surface-variant mb-5 max-w-sm text-sm">Langdurige lakbescherming met keramische coatings – minder vuil, betere glans en eenvoudiger onderhoud.</p>
-          <span class="bg-primary text-on-primary px-5 py-2 font-['Space_Grotesk'] text-xs uppercase tracking-widest">LEES MEER</span>
+          <span class="btn-hero btn-hero-primary btn-hero-sm pointer-events-none">Lees meer</span>
         </div>
       </a>
       <a href="diensten.html" class="md:col-span-4 group relative overflow-hidden rounded-lg h-64 md:h-auto scard block">
@@ -245,7 +337,7 @@
         <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
         <div class="absolute bottom-10 left-10">
           <h3 class="font-['Space_Grotesk'] font-bold text-white text-2xl mb-3">Dieptereiniging</h3>
-          <span class="text-primary font-['Space_Grotesk'] text-xs uppercase tracking-widest flex items-center gap-2">BEKIJK <span class="material-symbols-outlined text-sm">arrow_forward</span></span>
+          <span class="btn-hero btn-hero-outline btn-hero-sm pointer-events-none inline-flex items-center gap-2">Bekijk <span class="material-symbols-outlined text-sm" aria-hidden="true">arrow_forward</span></span>
         </div>
       </a>
       <a href="diensten.html" class="md:col-span-4 group relative overflow-hidden rounded-lg h-64 md:h-auto scard block">
@@ -254,7 +346,7 @@
         <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
         <div class="absolute bottom-10 left-10">
           <h3 class="font-['Space_Grotesk'] font-bold text-white text-2xl mb-3">Spotrepair</h3>
-          <span class="text-primary font-['Space_Grotesk'] text-xs uppercase tracking-widest flex items-center gap-2">BEKIJK <span class="material-symbols-outlined text-sm">arrow_forward</span></span>
+          <span class="btn-hero btn-hero-outline btn-hero-sm pointer-events-none inline-flex items-center gap-2">Bekijk <span class="material-symbols-outlined text-sm" aria-hidden="true">arrow_forward</span></span>
         </div>
       </a>
       <a href="diensten.html" class="md:col-span-8 group relative overflow-hidden rounded-lg h-64 md:h-auto scard block">
@@ -270,106 +362,23 @@
   </div>
 </section>
 
-<!-- 30 JAAR PASSIE -->
-<section class="py-section-gap px-6 md:px-margin-edge">
-  <div class="max-w-7xl mx-auto glass-card p-10 md:p-16 relative overflow-hidden reveal">
-    <div class="absolute top-0 right-0 w-1/2 h-full opacity-[0.04] pointer-events-none select-none overflow-hidden">
-      <span class="material-symbols-outlined text-white" style="font-size:360px;position:absolute;top:-60px;right:-80px;">history</span>
-    </div>
-    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 md:gap-16 items-center relative z-10">
-      <div>
-        <h2 class="font-['Space_Grotesk'] font-black text-white mb-8" style="font-size:clamp(1.8rem,3vw,2.8rem);letter-spacing:0.02em;">RUIM 30 JAAR ERVARING</h2>
-        <p class="font-['Inter'] text-lg text-on-surface-variant mb-10 leading-relaxed">
-          Sinds 1994 is Zaagman Autopoetsen in Leek uitgegroeid tot een vertrouwde specialist in professionele voertuigverzorging, lakbehoud en hoogwaardige beschermingsbehandelingen.
-        </p>
-        <div class="flex flex-wrap gap-6 items-center">
-          <div class="text-center group">
-            <div class="h-16 w-32 flex items-center justify-center border border-white/10 bg-white/5 p-4 rounded opacity-60 group-hover:opacity-100 transition-opacity">
-              <span class="font-['Space_Grotesk'] text-xl font-black text-white tracking-tighter">FOCWA</span>
-            </div>
-            <span class="font-['Space_Grotesk'] text-[10px] mt-2 block text-zinc-500 uppercase tracking-widest">Gecertificeerd</span>
-          </div>
-          <div class="text-center group">
-            <div class="h-16 w-36 flex items-center justify-center border border-white/10 bg-white/5 p-4 rounded opacity-60 group-hover:opacity-100 transition-opacity">
-              <span class="font-['Space_Grotesk'] text-base font-black text-white tracking-tighter">FLON 4000</span>
-            </div>
-            <span class="font-['Space_Grotesk'] text-[10px] mt-2 block text-zinc-500 uppercase tracking-widest">Master Partner</span>
-          </div>
-        </div>
-      </div>
-      <div class="grid grid-cols-2 gap-4">
-        <div class="space-y-4">
-          <div class="h-52 rounded bg-surface-container overflow-hidden">
-            <div class="w-full h-2 bg-primary"></div>
-            <div class="p-8">
-              <span class="font-['Space_Grotesk'] font-black text-4xl block mb-2">99%</span>
-              <p class="font-['Space_Grotesk'] text-xs uppercase tracking-widest text-zinc-400">Klanttevredenheid</p>
-            </div>
-          </div>
-          <div class="rounded bg-surface-container-high overflow-hidden p-8 border border-white/5">
-            <span class="material-symbols-outlined text-primary text-3xl mb-3 block">verified_user</span>
-            <p class="font-['Inter'] text-sm">Volledig verzekerd transport en opslag.</p>
-          </div>
-        </div>
-        <div class="space-y-4 pt-10">
-          <div class="rounded bg-surface-container-high overflow-hidden p-8 border border-white/5">
-            <span class="material-symbols-outlined text-primary text-3xl mb-3 block">award_star</span>
-            <p class="font-['Inter'] text-sm">Erkend FLON applicateur sinds 1994.</p>
-          </div>
-          <div class="h-52 rounded bg-primary overflow-hidden p-8 text-on-primary">
-            <span class="font-['Space_Grotesk'] font-black text-4xl block mb-2">12k+</span>
-            <p class="font-['Space_Grotesk'] text-xs uppercase tracking-widest">Voertuigen Behandeld</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
 <!-- KLANTERVARINGEN -->
-<section class="py-section-gap px-6 md:px-margin-edge reveal">
+<section class="py-section-gap px-6 md:px-margin-edge reveal" aria-labelledby="reviews-heading">
   <div class="text-center mb-16">
-    <h2 class="font-['Space_Grotesk'] font-black text-white mb-4" style="font-size:clamp(1.8rem,3vw,2.8rem);letter-spacing:0.02em;">GOOGLE REVIEWS</h2>
-    <p class="font-['Inter'] text-lg text-on-surface-variant max-w-2xl mx-auto">Echte ervaringen van klanten via Google Maps.</p>
+    <h2 id="reviews-heading" class="font-['Space_Grotesk'] font-black text-white" style="font-size:clamp(1.8rem,3vw,2.8rem);letter-spacing:0.02em;">GOOGLE REVIEWS</h2>
   </div>
-  <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-    <article class="review-card p-8 rounded-lg reveal">
-      <div class="flex items-center justify-between mb-5">
-        <span class="font-['Space_Grotesk'] text-xs uppercase tracking-widest text-primary">Google Review</span>
-        <span class="review-stars text-yellow-400 text-sm tracking-[0.2em]">★★★★★</span>
-      </div>
-      <p class="font-['Inter'] text-on-surface-variant leading-relaxed text-sm">
-        "Top service en super resultaat. Auto ziet er weer als nieuw uit en de communicatie was duidelijk en vriendelijk."
-      </p>
-      <p class="font-['Space_Grotesk'] text-xs text-zinc-400 uppercase tracking-widest mt-6">Klant uit Leek</p>
-    </article>
-    <article class="review-card p-8 rounded-lg reveal d1">
-      <div class="flex items-center justify-between mb-5">
-        <span class="font-['Space_Grotesk'] text-xs uppercase tracking-widest text-primary">Google Review</span>
-        <span class="review-stars text-yellow-400 text-sm tracking-[0.2em]">★★★★★</span>
-      </div>
-      <p class="font-['Inter'] text-on-surface-variant leading-relaxed text-sm">
-        "Heel netjes gewerkt, zowel binnen als buiten perfect schoon. Zeker een aanrader voor wie kwaliteit wil."
-      </p>
-      <p class="font-['Space_Grotesk'] text-xs text-zinc-400 uppercase tracking-widest mt-6">Klant uit Groningen</p>
-    </article>
-    <article class="review-card p-8 rounded-lg reveal d2">
-      <div class="flex items-center justify-between mb-5">
-        <span class="font-['Space_Grotesk'] text-xs uppercase tracking-widest text-primary">Google Review</span>
-        <span class="review-stars text-yellow-400 text-sm tracking-[0.2em]">★★★★★</span>
-      </div>
-      <p class="font-['Inter'] text-on-surface-variant leading-relaxed text-sm">
-        "Professioneel bedrijf met oog voor detail. Snelle planning en zeer tevreden met het eindresultaat."
-      </p>
-      <p class="font-['Space_Grotesk'] text-xs text-zinc-400 uppercase tracking-widest mt-6">Klant uit omgeving Leek</p>
-    </article>
+  <div class="reviews-carousel-wrap max-w-6xl mx-auto">
+    <div class="reviews-viewport px-1">
+      <div id="reviews-stage" class="reviews-stage" role="region" aria-roledescription="carrousel" aria-label="Google reviews" aria-live="polite"></div>
+      <div id="reviews-dots" class="reviews-dots" aria-label="Review slides"></div>
+    </div>
   </div>
   <div class="text-center mt-12">
     <a
       href="https://www.google.com/maps/place/Zaagman+B.V./@53.1675929,6.3757555,16z/data=!4m8!3m7!1s0x47c835a4e12a73d3:0x3027315714534f50!8m2!3d53.1675897!4d6.3783304!9m1!1b1!16s%2Fg%2F1hc6d1l4_?entry=ttu&g_ep=EgoyMDI2MDQyNy4wIKXMDSoASAFQAw%3D%3D"
       target="_blank"
       rel="noopener noreferrer"
-      class="inline-flex items-center gap-2 bg-primary text-on-primary px-8 py-4 font-['Space_Grotesk'] text-xs tracking-widest uppercase btn"
+      class="btn-hero btn-hero-primary inline-flex items-center gap-2"
     >
       Bekijk alle reviews op Google
       <span class="material-symbols-outlined text-base">open_in_new</span>
@@ -390,8 +399,8 @@
         Bel of mail gerust voor advies of een vrijblijvende prijsindicatie. We denken graag met u mee over wat uw auto nodig heeft.
       </p>
       <div class="flex flex-col sm:flex-row gap-5">
-        <a href="reserveren.html" class="bg-primary text-on-primary px-10 py-5 font-['Space_Grotesk'] text-xs tracking-[0.2em] uppercase btn">BOEK EEN CONSULTATIE</a>
-        <a href="tel:+31594518254" class="border border-white/20 text-white px-10 py-5 font-['Space_Grotesk'] text-xs tracking-[0.2em] uppercase hover:bg-white/5 btn">BEL ONS DIRECT</a>
+        <a href="reserveren.html" class="btn-hero btn-hero-primary btn-hero-lg">Boek een consultatie</a>
+        <a href="tel:+31594518254" class="btn-hero btn-hero-outline btn-hero-lg">Bel ons direct</a>
       </div>
     </div>
   </div>
@@ -448,5 +457,164 @@
 </footer>
 
 <script src="js/main.js"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const stage = document.getElementById('reviews-stage');
+    const dotsRoot = document.getElementById('reviews-dots');
+    const wrap = document.querySelector('.reviews-carousel-wrap');
+    if (!stage || !dotsRoot || !wrap) return;
+
+    /** Vervang door uw echte Google-reviewteksten (copy-paste van Maps). Zonder API geen automatische import. */
+    const REVIEWS = [
+      { text: 'Top service en super resultaat. Auto ziet er weer als nieuw uit en de communicatie was duidelijk en vriendelijk.', author: 'Klant uit Leek' },
+      { text: 'Heel netjes gewerkt, zowel binnen als buiten perfect schoon. Zeker een aanrader voor wie kwaliteit wil.', author: 'Klant uit Groningen' },
+      { text: 'Professioneel bedrijf met oog voor detail. Snelle planning en zeer tevreden met het eindresultaat.', author: 'Klant uit omgeving Leek' },
+      { text: 'We zijn heel blij met hoe de auto eruit ziet. Geen gehaast gedoe, alles netjes uitgelegd.', author: 'Klant uit Roden' },
+      { text: 'Camper laten reinigen: gladder dan verwacht. Volgende keer weer hierheen.', author: 'Klant uit Friesland' },
+      { text: 'Heldere prijsafspraak vooraf en prima uitgevoerd. Geen verrassingen achteraf.', author: 'Klant uit Drachten' },
+      { text: 'Interieur rook naar rook; na behandeling ruikt het weer fris. Top.', author: 'Klant uit Leek' },
+      { text: 'Lak voelt weer glad aan en de coating merk je echt in de regen.', author: 'Klant uit Groningen' },
+      { text: 'Vriendelijk personeel en netjes op tijd klaar. Auto werd voorzichtig behandeld.', author: 'Klant uit Ten Boer' },
+      { text: 'Eerste keer geweest op aanraden van een collega. Geen spijt — wordt een vaste plek.', author: 'Klant uit Winsum' },
+      { text: 'Spotrepair haalde een lelijke deuk/kras weg waar ik niet van had verwacht dat het zo netjes kon.', author: 'Klant uit Leek' },
+      { text: 'Goede communicatie over wat wel en niet nodig was. Vertrouwen gaf vertrouwen.', author: 'Klant uit Zuidhorn' },
+    ];
+
+    const PER_PAGE = 3;
+    const ROTATE_MS = 8000;
+    const TRANS_MS = 1000;
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    const groups = [];
+    for (let i = 0; i < REVIEWS.length; i += PER_PAGE) {
+      groups.push(REVIEWS.slice(i, i + PER_PAGE));
+    }
+    if (!groups.length) return;
+
+    const starsHtml = '<span class="review-stars text-yellow-400 text-sm tracking-[0.2em]" aria-hidden="true">★★★★★</span>';
+
+    function escapeHtml(text) {
+      const d = document.createElement('div');
+      d.textContent = text;
+      return d.innerHTML;
+    }
+
+    groups.forEach((group, slideIdx) => {
+      const layer = document.createElement('div');
+      layer.className = 'reviews-slide-layer';
+      layer.dataset.slide = String(slideIdx);
+      layer.innerHTML = group.map((r) => `
+        <article class="review-card p-8 rounded-xl">
+          <div class="flex items-center justify-between mb-5">
+            <span class="font-['Space_Grotesk'] text-xs uppercase tracking-widest text-primary">Google Review</span>
+            ${starsHtml}
+          </div>
+          <p class="font-['Inter'] text-on-surface-variant leading-relaxed text-sm">"${escapeHtml(r.text)}"</p>
+          <p class="font-['Space_Grotesk'] text-xs text-zinc-400 uppercase tracking-widest mt-6">${escapeHtml(r.author)}</p>
+        </article>
+      `).join('');
+      stage.appendChild(layer);
+    });
+
+    const layers = [...stage.querySelectorAll('.reviews-slide-layer')];
+    const total = layers.length;
+    const angleStep = 360 / total;
+    let current = 0;
+    let timer = null;
+    let transitioning = false;
+
+    stage.style.setProperty('--count', String(total));
+    layers.forEach((el, i) => {
+      el.style.setProperty('--angle', `${angleStep * i}deg`);
+    });
+
+    groups.forEach((_, i) => {
+      const btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'reviews-dot';
+      btn.setAttribute('aria-label', 'Ga naar review-set ' + (i + 1));
+      btn.setAttribute('aria-current', i === 0 ? 'true' : 'false');
+      btn.addEventListener('click', () => {
+        if (transitioning || i === current) return;
+        goTo(i);
+        restartTimer();
+      });
+      dotsRoot.appendChild(btn);
+    });
+
+    const dotEls = [...dotsRoot.querySelectorAll('.reviews-dot')];
+
+    function updateDots() {
+      dotEls.forEach((d, i) => d.setAttribute('aria-current', i === current ? 'true' : 'false'));
+    }
+
+    function circularDistance(index, from) {
+      const raw = (index - from + total) % total;
+      return Math.min(raw, total - raw);
+    }
+
+    function paintState() {
+      layers.forEach((el, i) => {
+        const distance = circularDistance(i, current);
+        el.classList.remove('is-active', 'is-near', 'is-far');
+        if (i === current) {
+          el.classList.add('is-active');
+          el.setAttribute('aria-hidden', 'false');
+        } else if (distance === 1) {
+          el.classList.add('is-near');
+          el.setAttribute('aria-hidden', 'true');
+        } else {
+          el.classList.add('is-far');
+          el.setAttribute('aria-hidden', 'true');
+        }
+      });
+    }
+
+    function applyRotation(skipAnimation = false) {
+      if (skipAnimation) {
+        stage.classList.add('no-anim');
+      }
+      stage.style.setProperty('--rotation', `${-angleStep * current}deg`);
+      paintState();
+      if (skipAnimation) {
+        void stage.offsetWidth;
+        stage.classList.remove('no-anim');
+      }
+      updateDots();
+    }
+
+    function goTo(next) {
+      if (transitioning || next === current) return;
+      current = next;
+      if (reducedMotion || layers.length <= 1) {
+        applyRotation(true);
+        return;
+      }
+      transitioning = true;
+      applyRotation(false);
+      window.setTimeout(() => {
+        transitioning = false;
+      }, TRANS_MS);
+    }
+
+    function nextSlide() {
+      goTo((current + 1) % layers.length);
+    }
+
+    function restartTimer() {
+      if (timer) window.clearInterval(timer);
+      if (layers.length <= 1) return;
+      timer = window.setInterval(nextSlide, ROTATE_MS);
+    }
+
+    wrap.addEventListener('mouseenter', () => {
+      if (timer) window.clearInterval(timer);
+    });
+    wrap.addEventListener('mouseleave', restartTimer);
+
+    applyRotation(true);
+    restartTimer();
+  });
+</script>
 </body>
 </html>
