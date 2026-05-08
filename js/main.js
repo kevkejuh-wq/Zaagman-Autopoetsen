@@ -50,9 +50,12 @@ document.addEventListener('DOMContentLoaded', () => {
   const btn = document.getElementById('mobile-menu-btn');
   const menu = document.getElementById('mobile-menu');
   if (btn && menu) {
+    if (!btn.getAttribute('aria-controls')) btn.setAttribute('aria-controls', 'mobile-menu');
+    btn.setAttribute('aria-expanded', 'false');
     btn.addEventListener('click', () => {
       const opening = menu.classList.contains('hidden');
       menu.classList.toggle('hidden');
+      btn.setAttribute('aria-expanded', opening ? 'true' : 'false');
       const icon = btn.querySelector('.material-symbols-outlined');
       if (icon) icon.textContent = opening ? 'close' : 'menu';
     });
@@ -60,6 +63,7 @@ document.addEventListener('DOMContentLoaded', () => {
     document.addEventListener('click', (e) => {
       if (!btn.contains(e.target) && !menu.contains(e.target)) {
         menu.classList.add('hidden');
+        btn.setAttribute('aria-expanded', 'false');
         const icon = btn.querySelector('.material-symbols-outlined');
         if (icon) icon.textContent = 'menu';
       }
